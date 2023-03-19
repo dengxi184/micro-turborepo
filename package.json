@@ -1,0 +1,35 @@
+{
+  "name": "my-turborepo",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.4",
+    "sort-package-json": "^2.4.1",
+    "turbo": "latest"
+  },
+  "lint-staged": {
+    "apps/**/*.{js,jsx,tsx,ts,less}": [
+      "prettier --write"
+    ],
+    "apps/*/package.json": [
+      "npx sort-package-json"
+    ]
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "packageManager": "pnpm@7.29.1"
+}
