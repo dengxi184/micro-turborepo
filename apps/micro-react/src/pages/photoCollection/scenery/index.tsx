@@ -75,7 +75,7 @@ const Scenery = () => {
           handleFileList[idx] = imgFile;
         }
       }
-      setFileList([...handleFileList]);
+      setFileList([...fileList, ...handleFileList]);
     };
     if (imgBuffList.length > 0) requestFn();
   }, [imgBuffList]);

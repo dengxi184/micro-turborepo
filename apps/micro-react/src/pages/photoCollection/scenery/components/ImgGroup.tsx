@@ -1,14 +1,25 @@
-import { useEffect, useState } from 'react';
-import { Pagination, Space, Image } from '@arco-design/web-react';
+import { useEffect, useState, useRef } from 'react';
+import { Pagination, Space } from '@arco-design/web-react';
 
 import { getImgListRequest } from '../../../../api/fileUpload';
+import { LazyImage } from './LazyImage';
 import { pageSize } from '../../contants';
-import { maxSize } from '../../contants';
+
+export interface IImg {
+  fileName: string;
+  createAt: number;
+  imgName: string;
+  size: string;
+  url: string;
+  scale: number;
+  _id: number;
+}
 
 const ImgGroup = ({ keyword }) => {
-  const [imgList, setImgList] = useState<Array<any>>([]);
+  const [imgList, setImgList] = useState<Array<IImg>>([]);
   const [total, setTotal] = useState<number>(0);
   const [curPage, setCurPage] = useState<number>(1);
+  const observer = useRef(null);
 
   const handlePageChange = (cur: number) => {
     setCurPage(cur);
@@ -25,6 +36,29 @@ const ImgGroup = ({ keyword }) => {
     };
     requestFn();
   }, [keyword, curPage]);
+  useEffect(() => {
+    observer.current = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((item, index) => {
+          if (item.intersectionRatio > 0) {
+            lazy(item.target, index);
+          }
+        });
+      },
+    );
+    const lazy = (dom, index) => {
+      const imgDom = dom.children[0];
+      if (!imgDom.src || imgDom.src !== imgDom.dataset.src) {
+        console.log(`图片${index}加载成功！`);
+        imgDom.src = imgDom.dataset.src;
+      }
+    };
+    return () => {
+      // 取消所有图片懒加载组件的观察
+      observer.current.disconnect();
+    };
+  }, []);
+
   return (
     <>
       <div style={{ padding: 30, marginLeft: 20 }}>
@@ -36,12 +70,7 @@ const ImgGroup = ({ keyword }) => {
         >
           {imgList.map((img) => {
             return (
-              <Image
-                width={img.scale > 1 ? maxSize : maxSize * img.scale}
-                height={img.scale > 1 ? maxSize / img.scale : maxSize}
-                key={img._id}
-                src={img.url}
-              />
+              <LazyImage img={img} observer={observer.current} key={img._id} />
             );
           })}
         </Space>

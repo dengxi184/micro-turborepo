@@ -20,3 +20,5 @@ export const spaceConfig = {
 export const pageSize = 16;
 
 export const maxSize = 250;
+
+export const basicColor = '#a44a00';
