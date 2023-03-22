@@ -25,10 +25,6 @@ export const routes: IRoute[] = [
       {
         name: 'menu.notepad.diary',
         key: 'notepad/diary',
-        // requiredPermissions: [
-        //   // 源 和 需要对应的身份, 有可能需要多级权力才能看这部分
-        //   { resource: 'menu.notepad.diary', actions: ['read'] },
-        // ],
       },
       {
         name: 'menu.notepad.preoccupation',

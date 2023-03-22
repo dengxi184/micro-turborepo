@@ -42,14 +42,14 @@ export default {
       MENU_CONF: {}
     }
     editorConfig.MENU_CONF['uploadImage'] = {
-      async customUpload(file, insertFn) {                   // JS 语法
+      async customUpload(file, insertFn) { 
         //console.log(file)
         try {
           const fd = new FormData()
           fd.append('file', file)
-          const rsp = await (await fetch('http://localhost:3000/upload/api/uploadImg',{method:'POST',body:fd})).json()
+          const rsp = await (await fetch('http://localhost:3000/api/upload/upload-img',{method:'POST',body:fd})).json()
           if( rsp.errno === 0 ) {
-            insertFn(`http://localhost:9000/${rsp.data.url}`)
+            insertFn(rsp.filePath)
           }
         } catch(err) {
           console.log(err)

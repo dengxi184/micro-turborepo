@@ -35,31 +35,34 @@ const ImgGroup = ({ keyword }) => {
       const { list, total } = await getImgListRequest({
         pageSize,
         curPage,
-        keyword: keyword,
+        keyword,
       });
       setImgList([...list]);
       setTotal(total);
     };
     requestFn();
   }, [keyword, curPage]);
+
   const imgPreload = async (deadline: IdleDeadline) => {
-    if (deadline.timeRemaining() > 10) {
-      console.log(watingImgs, 47);
-      const nedLoadMore = watingImgs.every((dom) => {
-        const imgDom = dom.children[0] as ImgElemnt;
-        if (!imgDom.src || imgDom.src !== imgDom.dataset.src) {
-          imgDom.src = imgDom.dataset.src;
-          console.log('图片预加载！');
-          return false;
-        }
-        return true;
-      });
-      !nedLoadMore && requestIdleCallback(imgPreload);
+    let nedLoadDom;
+    watingImgs.every((dom) => {
+      const imgDom = dom.children[0] as ImgElemnt;
+      if (!imgDom.src || imgDom.src !== imgDom.dataset.src) {
+        nedLoadDom = imgDom;
+        return false;
+      }
+      return true;
+    });
+    if (nedLoadDom && deadline.timeRemaining() > 10) {
+      nedLoadDom.src = nedLoadDom.dataset.src;
     }
+    nedLoadDom && requestIdleCallback(imgPreload);
   };
+
   useEffect(() => {
     requestIdleCallback(imgPreload, { timeout: 1000 });
   }, [watingImgs]);
+
   useEffect(() => {
     observer.current = new IntersectionObserver(
       (entries: IntersectionObserverEntry[]) => {
@@ -81,7 +84,6 @@ const ImgGroup = ({ keyword }) => {
       }
     };
     return () => {
-      // 取消所有图片懒加载组件的观察
       observer.current.disconnect();
     };
   }, []);

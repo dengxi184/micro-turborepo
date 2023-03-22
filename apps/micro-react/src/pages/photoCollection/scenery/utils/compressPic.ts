@@ -1,4 +1,6 @@
-const compressPic = (file: File, encoderOtp = 0.2): Promise<File> => {
+import { encoderOtp } from '../../contants';
+
+const compressPic = (file: File): Promise<File> => {
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -10,9 +12,10 @@ const compressPic = (file: File, encoderOtp = 0.2): Promise<File> => {
         const canvas = document.createElement('canvas');
         canvas.width = image.width;
         canvas.height = image.height;
-        const ctx = canvas.getContext('2d');
-        // 后续考虑画布销毁 canvas限制 1000px*1000px以上无法绘制
+        let ctx = canvas.getContext('2d');
+        // 1000px*1000px以上无法绘制
         ctx.drawImage(image, 0, 0, image.width, image.height);
+        ctx = null;
         const canvasURL = canvas.toDataURL(file.type, encoderOtp);
         const buffer = atob(canvasURL.split(',')[1]);
         let length = buffer.length;
