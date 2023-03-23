@@ -41,7 +41,7 @@ export default {
       state.id = id
 
       const rsp = await getDetailsRequest({id})
-      const { title, content } = rsp.details
+      const { title, content } = rsp
       state.htmlTitle = `<h1>${title}</h1>`
       state.htmlContent = content
     })

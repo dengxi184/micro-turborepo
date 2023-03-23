@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 import {
   Button,
   Breadcrumb,
@@ -7,12 +7,11 @@ import {
   Message,
 } from '@arco-design/web-react';
 import { Route, Routes, Link } from 'react-router-dom';
-import './index.less';
-import { getStorage, removeStorage, setStorage } from '../../storage';
+import { getStorage, removeStorage } from '../../storage';
 import AuthComponent from '../AuthComponent';
 import lazyWithPreload from '../../utils/lazyWithPreload';
-import { toPrivateRequest } from '../../api/validate';
 import { encrypt } from '../../storage/encrypt';
+import './index.less';
 
 const ReactApp = lazyWithPreload(() => import('./ReactApp'));
 const VueApp = lazyWithPreload(() => import('./VueApp'));

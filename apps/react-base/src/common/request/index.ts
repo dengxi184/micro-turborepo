@@ -44,7 +44,7 @@ forEach(responseInterceptors, (interceptor) => {
   interceptors.response.use(interceptor);
 });
 
-const baseUrl = 'http://localhost:9000/';
+const baseUrl = 'http://localhost:3000/';
 
 const abortMap = new Map();
 

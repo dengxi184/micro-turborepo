@@ -48,9 +48,7 @@ export default {
           const fd = new FormData()
           fd.append('file', file)
           const rsp = await (await fetch('http://localhost:3000/api/upload/upload-img',{method:'POST',body:fd})).json()
-          if( rsp.errno === 0 ) {
-            insertFn(rsp.filePath)
-          }
+          insertFn(rsp.filePath)
         } catch(err) {
           console.log(err)
         }

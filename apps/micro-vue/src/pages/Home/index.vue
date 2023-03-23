@@ -79,7 +79,6 @@ export default {
    
     onMounted(()=> {
       const data = window.microApp.getData()
-      console.log(data, 82)
     })
 
     watch(
