@@ -72,7 +72,6 @@ export default {
 
     const handleSubmit = async () => {
       try {
-        console.log(valueHtml.value)
         const Reg = /<[Hh]([1-6])>[^<]*?<\/[Hh]\1>/g
         const Tags = Reg.exec(valueHtml.value)[0]
         const title = Tags.split('>')[1].split('<')[0]

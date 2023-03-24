@@ -1,4 +1,3 @@
-const express = require('express');
 const multiparty = require('multiparty');
 const fs = require('fs');
 const { Buffer } = require('buffer');
@@ -6,6 +5,7 @@ const rimraf = require('rimraf');
 const sizeOf = require('image-size');
 
 const multer = require('../utils/multer');
+const baseURL = require('../utils/getBaseURL');
 
 const File = require('../models/fileModel');
 const Img = require('../models/imgModel');
@@ -58,7 +58,7 @@ exports.uploadImg = [
         });
       } else {
         const { fileRename, imgName, createAt } = req;
-        const url = `http://localhost:9000/static/images/${fileRename}`;
+        const url = `${baseURL}/static/images/${fileRename}`;
         const file = await fs.promises.stat(`static/images/${fileRename}`);
         const size = `${(file.size / 1024 / 1024).toFixed(3)}M`;
         sizeOf(`static/images/${fileRename}`, async (err, dimensions) => {
@@ -172,7 +172,10 @@ exports.merge = [
         if (err) return res.send('文件合并失败');
         const file = await fs.promises.stat(`static/files/${fileName}`);
         const size = `${(file.size / 1024 / 1024).toFixed(1)}M`;
-        await rimraf(`static/temporary/${fileName}`);
+        const prefix =
+          process.env.NODE_ENV === 'development'
+            ? 'http://localhost:3000/static/files'
+            : `${baseURL}/static/files`;
         await File.create({
           fileName,
           fileHash,
@@ -181,7 +184,7 @@ exports.merge = [
           size,
         });
         res.send({
-          prefix: `http://localhost:3000/static/files`,
+          prefix,
           suffix: `/${fileName}`,
           fileName: `${fileName}`,
           size,
@@ -191,6 +194,23 @@ exports.merge = [
       ws.close();
     } catch (error) {
       console.error(error, 62);
+    } finally {
+      await rimraf(`static/temporary/${fileName}`);
     }
   },
 ];
+// 文件流压缩
+// const { pipeline } = require('stream');
+// const zlib = require('zlib');
+// pipeline(
+//   fs.createReadStream(`static/files/${fileName}`),
+//   zlib.createGzip(),
+//   fs.createWriteStream(`static/files/${fileName}.gz`),
+//   (err) => {
+//     if (err) {
+//       console.error('Pipeline failed', err);
+//     } else {
+//       console.log('Pipeline succeeded');
+//     }
+//   }
+// );

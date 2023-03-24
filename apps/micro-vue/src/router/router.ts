@@ -1,45 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-// export interface RouteRecordRaw {
-//   path: string
-//   redirect?: string
-//   component?: () => Promise<typeof import("*.vue")>
-//   children?: RouteRecordRaw[]
-// }
-
 export const routes = [
-  // {
-  //   path: "/project",
-  //   name: "Project",
-  //   children: [
-  //     {
-  //       name: 'Optimization',
-  //       path: 'optimization',
-  //       component: () => import('../pages/Home/components/Project/Optimization/index.vue')
-  //     },
-  //     {
-  //       name: 'Difficulty',
-  //       path: 'difficulty',
-  //       component: () => import('../pages/Home/components/Project/Difficulty/index.vue')
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: "/knowledge",
-  //   name:'Knowledge',
-  //   children:[
-  //     {
-  //       name: 'React',
-  //       path: 'react',
-  //       component: () => import('../pages/Home/components/Knowledge/React/index.vue'),
-  //     },
-  //     {
-  //       name: 'Vue',
-  //       path: 'vue',
-  //       component: () => import('../pages/Home/components/Knowledge/Vue/index.vue'),
-  //     }
-  //   ]
-  // },
   {
     path: '/home',
     name: 'Home',
