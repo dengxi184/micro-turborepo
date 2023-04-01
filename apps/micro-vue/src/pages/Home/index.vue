@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { onMounted, reactive, watch, toRefs, onBeforeUnmount } from 'vue'
+import { onMounted, reactive, watch, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 import { IconPlus } from '@arco-design/web-vue/es/icon';
 
@@ -108,7 +108,7 @@ export default {
   position: absolute;
   width: 80%;
   height: 80%;
-  top: 150px;
+  top: 60px;
   left: 230px;
   background-color: #fff;
 }

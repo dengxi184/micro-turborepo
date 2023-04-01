@@ -1,4 +1,4 @@
-import { ReqProps, RequestInitProps } from '.';
+import type { ReqProps, RequestInitProps } from '.';
 
 export type IWindow = Window &
   typeof globalThis & { getStorage: (key: string) => any };

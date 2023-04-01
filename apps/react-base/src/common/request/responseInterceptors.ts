@@ -1,5 +1,5 @@
 import { Message } from '@arco-design/web-react';
-import { ResProps } from '.';
+import type { ResProps } from '.';
 
 const host = window.location.host;
 

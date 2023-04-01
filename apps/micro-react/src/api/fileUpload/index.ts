@@ -13,7 +13,7 @@ const url = 'api/upload';
 export const uploadFileRequest = async (options: any) => {
   return post({
     input: `${url}/upload-file`,
-    init: { body: options, supportCancel: true },
+    init: { ...options },
   });
 };
 

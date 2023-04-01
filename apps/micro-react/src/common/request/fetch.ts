@@ -1,4 +1,4 @@
-import { ReqProps, ReqResErrProps, IConfigProps, ResProps } from '.';
+import type { ReqProps, ReqResErrProps, IConfigProps, ResProps } from '.';
 
 const interceptorsReq: ReqProps[] = [];
 const interceptorsReqError: ReqResErrProps[] = [];

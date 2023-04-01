@@ -84,7 +84,7 @@
   "dependencies": {
     "@arco-design/color": "^0.4.0",
     "@arco-design/web-react": "^2.45.0",
-    "@babel/core": "^7.16.0",
+    "@babel/core": "^7.21.0",
     "@loadable/component": "^5.15.3",
     "@micro-zoe/micro-app": "^0.8.10",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",

@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 import { SECRET_KEY, SECRET_IV } from '../utils/secret';
-import { IcryptProps } from '.';
+import type { IcryptProps } from '.';
 
 export const decrypt: IcryptProps = (data: any) => {
   const encryptedHexStr = CryptoJS.enc.Hex.parse(data);

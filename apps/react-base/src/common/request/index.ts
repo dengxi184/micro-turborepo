@@ -25,15 +25,6 @@ export interface IConfigProps {
   init: RequestInitProps;
 }
 
-let configDefault = {
-  showError: true,
-  canEmpty: false,
-  returnOrigin: false,
-  withoutCheck: false,
-  mock: false,
-  timeout: 10000,
-};
-
 // 添加请求拦截器
 forEach(requestInterceptors, (interceptor) => {
   interceptors.request.use(interceptor);
@@ -47,7 +38,6 @@ forEach(responseInterceptors, (interceptor) => {
 const baseUrl = 'http://localhost:3000/';
 
 const abortMap = new Map();
-
 const request = <T = any>(
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   config: IConfigProps,
@@ -56,9 +46,7 @@ const request = <T = any>(
   const additionalConfig: {
     signal?: AbortSignal;
   } = {};
-
   config!.init!.method = method;
-
   if (config?.init?.supportCancel) {
     const key = `${config.input}-${method}`;
     const abortFn = abortMap.get(key);
@@ -73,7 +61,6 @@ const request = <T = any>(
   return Cfetch(
     Object.assign(
       { ...config, input: baseUrl + config.input },
-      configDefault,
       additionalConfig,
     ),
   ) as unknown as Promise<T>;

@@ -1,4 +1,4 @@
-import { ReqProps, RequestInitProps } from '.';
+import type { ReqProps, RequestInitProps } from '.';
 import { getStorage } from '../../storage';
 
 export const defaultRequestInterceptor: ReqProps = (init: RequestInitProps) => {

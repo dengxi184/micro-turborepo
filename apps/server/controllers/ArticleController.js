@@ -1,5 +1,3 @@
-const rimraf = require('rimraf');
-
 const Article = require('../models/articleModel');
 
 exports.articlePublish = [
