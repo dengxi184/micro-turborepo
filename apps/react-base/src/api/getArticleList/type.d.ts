@@ -1,4 +1,5 @@
 export interface getListOptions {
+  keyword: string;
   type: string;
   id: string;
   curPage: number;

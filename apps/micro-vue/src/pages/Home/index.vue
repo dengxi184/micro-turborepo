@@ -14,9 +14,12 @@
         </template>
       </Loading>
     </div>
-    <a-button @click="handlePublish" class="publishBtn" type="primary" shape="circle">
-      <icon-plus />
-    </a-button>
+    <div class="searchWrap">
+      <a-input-search @input="handleInput" placeholder="Please enter something"/>
+      <a-button @click="handlePublish" type="primary" shape="circle">
+        <icon-plus />
+      </a-button>
+    </div>
   </div>
 </template>
 
@@ -34,6 +37,7 @@ export default {
     const router = useRouter()
     const state = reactive({
       // 默认类型
+      keyword: '',
       bottom: false,
       loading: false,
       type: 'Optimization',
@@ -51,9 +55,10 @@ export default {
       state.type = value
     }
 
-    const getList = async (type, pageSize, curPage = 1, isLoadMore = false) => {
+    const getList = async (type, pageSize, curPage = 1, keyword = '', isLoadMore = false) => {
       try {
-        const rsp = await getListRequest({type, id: getStorage('userId'), curPage, pageSize})
+        console.log(type, pageSize, curPage, keyword, isLoadMore)
+        const rsp = await getListRequest({keyword, type, id: getStorage('userId'), curPage, pageSize})
         if( isLoadMore ) {
           state.list = [...state.list,...rsp.listData]
           state.bottom = true
@@ -67,11 +72,21 @@ export default {
       }
     }
 
-    const handleLoadMoreThrottle = _.throttle(()=>{
+    const handleInput = (keyword) => {
+      console.log(keyword, 76)
+      state.keyword = keyword
+    }
+
+    const handleLoadMoreThrottle = _.throttle(()=> {
       if( state.bottom ) return
-      const { type, pageSize, curPage } = state
-      getList(type, pageSize, curPage, true)
+      const { type, pageSize, curPage, keyword } = state
+      getList(type, pageSize, curPage, keyword, true)
     }, 500, { 'trailing': false })
+
+    const handleSearchDebounce = _.debounce(()=> {
+      const { type, pageSize, keyword } = state
+      getList(type, pageSize, 1, keyword)
+    }, 300)
 
     const toDetails = (id) => {
       router.push({name:'Details', query:{id}})
@@ -89,12 +104,21 @@ export default {
       }   
     )
 
+    watch(
+      ()=> state.keyword,
+      ()=> {
+        console.log(_.debounce, 109)
+        handleSearchDebounce()
+      }   
+    )
+
     return {  
       ...toRefs(state),
       handlePublish,
       handleTypeChange,
       toDetails,
-      handleLoadMoreThrottle,
+      handleInput,
+      handleLoadMoreThrottle
     }
   }
 }
@@ -112,10 +136,12 @@ export default {
   left: 230px;
   background-color: #fff;
 }
-.publishBtn {
+.searchWrap {
+  width: 345px;
   position: absolute;
-  top: 20%;
-  right: 80%;
+  display: flex;
+  top: 3%;
+  right: 60%;
 }
 .list-item :hover { 
   cursor:pointer

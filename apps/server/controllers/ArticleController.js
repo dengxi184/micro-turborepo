@@ -27,10 +27,16 @@ exports.articleDelete = [
 exports.getArticle = [
   async (req, res) => {
     try {
-      const { type, id, curPage, pageSize } = req.query;
-      console.log(type, id, curPage, pageSize, 33);
+      const { keyword = '', type, id, curPage, pageSize } = req.query;
+      const str = '^.*' + keyword + '.*$';
+      const reg = new RegExp(str);
       const skipCount = (+curPage - 1) * +pageSize;
-      const list = await Article.find({ type, id })
+      const list = await Article.find({
+        $or: [
+          { type, id, title: { $regex: reg, $options: 'i' } },
+          { type, id, content: { $regex: reg, $options: 'i' } },
+        ],
+      })
         .sort({ creatAt: -1 }) // 按创建时降序
         .skip(skipCount) // 跳过的条数
         .limit(+pageSize); //查询几条
