@@ -16,7 +16,7 @@ importers:
       lint-staged: 13.2.0
       prettier: 2.8.4
       sort-package-json: 2.4.1
-      turbo: registry.npmmirror.com/turbo/1.8.6
+      turbo: registry.npmmirror.com/turbo/1.8.8
 
   apps/micro-react:
     specifiers:
@@ -436,7 +436,7 @@ importers:
       eslint: registry.npmmirror.com/eslint/7.32.0
       eslint-config-next: registry.npmmirror.com/eslint-config-next/13.0.0_jofidmxrjzhj7l6vknpw5ecvfe
       eslint-config-prettier: registry.npmmirror.com/eslint-config-prettier/8.7.0_eslint@7.32.0
-      eslint-config-turbo: registry.npmmirror.com/eslint-config-turbo/0.0.10_eslint@7.32.0
+      eslint-config-turbo: registry.npmmirror.com/eslint-config-turbo/1.8.8_eslint@7.32.0
       eslint-plugin-react: registry.npmmirror.com/eslint-plugin-react/7.31.8_eslint@7.32.0
     devDependencies:
       typescript: registry.npmmirror.com/typescript/4.9.5
@@ -19011,16 +19011,16 @@ packages:
       - jest
       - supports-color
 
-  registry.npmmirror.com/eslint-config-turbo/0.0.10_eslint@7.32.0:
-    resolution: {integrity: sha512-o4ULFZYM1OihSd63eDGEuy9rt6tW4ma6xnW9grnr44BoJwKaGQko2aka9kfqQs0vtmwD1++Os3ThPHETmzkFzA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eslint-config-turbo/-/eslint-config-turbo-0.0.10.tgz}
-    id: registry.npmmirror.com/eslint-config-turbo/0.0.10
+  registry.npmmirror.com/eslint-config-turbo/1.8.8_eslint@7.32.0:
+    resolution: {integrity: sha512-+yT22sHOT5iC1sbBXfLIdXfbZuiv9bAyOXsxTxFCWelTeFFnANqmuKB3x274CFvf7WRuZ/vYP/VMjzU9xnFnxA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eslint-config-turbo/-/eslint-config-turbo-1.8.8.tgz}
+    id: registry.npmmirror.com/eslint-config-turbo/1.8.8
     name: eslint-config-turbo
-    version: 0.0.10
+    version: 1.8.8
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
       eslint: registry.npmmirror.com/eslint/7.32.0
-      eslint-plugin-turbo: registry.npmmirror.com/eslint-plugin-turbo/0.0.10_eslint@7.32.0
+      eslint-plugin-turbo: registry.npmmirror.com/eslint-plugin-turbo/1.8.8_eslint@7.32.0
     dev: false
 
   registry.npmmirror.com/eslint-import-resolver-node/0.3.7:
@@ -19373,11 +19373,11 @@ packages:
       - supports-color
       - typescript
 
-  registry.npmmirror.com/eslint-plugin-turbo/0.0.10_eslint@7.32.0:
-    resolution: {integrity: sha512-T7QRwF4rjBQCJD9AHLHn9ShtHCHNkfIZW5Oio92WtQYhoU5jZCU3ynU+ONFXLuvoUx4dJ19WergIyHL+DwL2+g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eslint-plugin-turbo/-/eslint-plugin-turbo-0.0.10.tgz}
-    id: registry.npmmirror.com/eslint-plugin-turbo/0.0.10
+  registry.npmmirror.com/eslint-plugin-turbo/1.8.8_eslint@7.32.0:
+    resolution: {integrity: sha512-zqyTIvveOY4YU5jviDWw9GXHd4RiKmfEgwsjBrV/a965w0PpDwJgEUoSMB/C/dU310Sv9mF3DSdEjxjJLaw6rA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eslint-plugin-turbo/-/eslint-plugin-turbo-1.8.8.tgz}
+    id: registry.npmmirror.com/eslint-plugin-turbo/1.8.8
     name: eslint-plugin-turbo
-    version: 0.0.10
+    version: 1.8.8
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
@@ -26871,79 +26871,79 @@ packages:
       tslib: registry.npmmirror.com/tslib/1.14.1
       typescript: registry.npmmirror.com/typescript/4.9.5
 
-  registry.npmmirror.com/turbo-darwin-64/1.8.6:
-    resolution: {integrity: sha512-VlXkQR0TEBAEyBRsvAXBax+fj1EdPKPliwBaCnRLiDUcA/8wYlKte/Kk6ubmj9E0n7U/B4keCxxHiJZqW/5Rqg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-64/-/turbo-darwin-64-1.8.6.tgz}
+  registry.npmmirror.com/turbo-darwin-64/1.8.8:
+    resolution: {integrity: sha512-18cSeIm7aeEvIxGyq7PVoFyEnPpWDM/0CpZvXKHpQ6qMTkfNt517qVqUTAwsIYqNS8xazcKAqkNbvU1V49n65Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-64/-/turbo-darwin-64-1.8.8.tgz}
     name: turbo-darwin-64
-    version: 1.8.6
+    version: 1.8.8
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-darwin-arm64/1.8.6:
-    resolution: {integrity: sha512-w4L2QLj90ex68UXxTPoqtZPl8mWzc6a1RtPjQhoxAWtZf9T2WXi813dCzYEbVUVC09/DOW/VxZRN7sb2r0KP9A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-arm64/-/turbo-darwin-arm64-1.8.6.tgz}
+  registry.npmmirror.com/turbo-darwin-arm64/1.8.8:
+    resolution: {integrity: sha512-ruGRI9nHxojIGLQv1TPgN7ud4HO4V8mFBwSgO6oDoZTNuk5ybWybItGR+yu6fni5vJoyMHXOYA2srnxvOc7hjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-arm64/-/turbo-darwin-arm64-1.8.8.tgz}
     name: turbo-darwin-arm64
-    version: 1.8.6
+    version: 1.8.8
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-linux-64/1.8.6:
-    resolution: {integrity: sha512-eV245jefIhMAZskqQKalFwreC5UEdQcuHcBiWcgUk0py76fbwB7+1HfH5cmeJlb3a1sB6f3H0HHmGPmb34feCA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-linux-64/-/turbo-linux-64-1.8.6.tgz}
+  registry.npmmirror.com/turbo-linux-64/1.8.8:
+    resolution: {integrity: sha512-N/GkHTHeIQogXB1/6ZWfxHx+ubYeb8Jlq3b/3jnU4zLucpZzTQ8XkXIAfJG/TL3Q7ON7xQ8yGOyGLhHL7MpFRg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-linux-64/-/turbo-linux-64-1.8.8.tgz}
     name: turbo-linux-64
-    version: 1.8.6
+    version: 1.8.8
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-linux-arm64/1.8.6:
-    resolution: {integrity: sha512-Kiw3nyEvNU6Bpil4zE5FwhasPAOi59R4YdCmjJp0Sen6V9u+/Jij6SWwaoUdATORJLiYQBbhontWBH55B53VDw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-linux-arm64/-/turbo-linux-arm64-1.8.6.tgz}
+  registry.npmmirror.com/turbo-linux-arm64/1.8.8:
+    resolution: {integrity: sha512-hKqLbBHgUkYf2Ww8uBL9UYdBFQ5677a7QXdsFhONXoACbDUPvpK4BKlz3NN7G4NZ+g9dGju+OJJjQP0VXRHb5w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-linux-arm64/-/turbo-linux-arm64-1.8.8.tgz}
     name: turbo-linux-arm64
-    version: 1.8.6
+    version: 1.8.8
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-windows-64/1.8.6:
-    resolution: {integrity: sha512-34BkAG9r4nE00xeMeVahaF82h8R6SO+IIOcD60fNr2p+Ch+YcQa+DbEWA/KUj3coUTIiNP5XnRCLRUYADdlxjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-windows-64/-/turbo-windows-64-1.8.6.tgz}
+  registry.npmmirror.com/turbo-windows-64/1.8.8:
+    resolution: {integrity: sha512-2ndjDJyzkNslXxLt+PQuU21AHJWc8f6MnLypXy3KsN4EyX/uKKGZS0QJWz27PeHg0JS75PVvhfFV+L9t9i+Yyg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-windows-64/-/turbo-windows-64-1.8.8.tgz}
     name: turbo-windows-64
-    version: 1.8.6
+    version: 1.8.8
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-windows-arm64/1.8.6:
-    resolution: {integrity: sha512-4jWUaI7Lmonp2I3x81GruiCYd0aQsG/xDOYhuv9+j2yIgB/UHJFz/P8PWp/nziwPtGpRd/AheDlPzzyd9lWoqw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-windows-arm64/-/turbo-windows-arm64-1.8.6.tgz}
+  registry.npmmirror.com/turbo-windows-arm64/1.8.8:
+    resolution: {integrity: sha512-xCA3oxgmW9OMqpI34AAmKfOVsfDljhD5YBwgs0ZDsn5h3kCHhC4x9W5dDk1oyQ4F5EXSH3xVym5/xl1J6WRpUg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-windows-arm64/-/turbo-windows-arm64-1.8.8.tgz}
     name: turbo-windows-arm64
-    version: 1.8.6
+    version: 1.8.8
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo/1.8.6:
-    resolution: {integrity: sha512-6IOOaa8ytgjnSCTnp3LKAd2uGBZ/Kmx8ZPlI/YMWuKMUqvkXKLbh+w76ApMgMm+faUqti+QujVWovCu2kY6KuQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo/-/turbo-1.8.6.tgz}
+  registry.npmmirror.com/turbo/1.8.8:
+    resolution: {integrity: sha512-qYJ5NjoTX+591/x09KgsDOPVDUJfU9GoS+6jszQQlLp1AHrf1wRFA3Yps8U+/HTG03q0M4qouOfOLtRQP4QypA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo/-/turbo-1.8.8.tgz}
     name: turbo
-    version: 1.8.6
+    version: 1.8.8
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      turbo-darwin-64: registry.npmmirror.com/turbo-darwin-64/1.8.6
-      turbo-darwin-arm64: registry.npmmirror.com/turbo-darwin-arm64/1.8.6
-      turbo-linux-64: registry.npmmirror.com/turbo-linux-64/1.8.6
-      turbo-linux-arm64: registry.npmmirror.com/turbo-linux-arm64/1.8.6
-      turbo-windows-64: registry.npmmirror.com/turbo-windows-64/1.8.6
-      turbo-windows-arm64: registry.npmmirror.com/turbo-windows-arm64/1.8.6
+      turbo-darwin-64: registry.npmmirror.com/turbo-darwin-64/1.8.8
+      turbo-darwin-arm64: registry.npmmirror.com/turbo-darwin-arm64/1.8.8
+      turbo-linux-64: registry.npmmirror.com/turbo-linux-64/1.8.8
+      turbo-linux-arm64: registry.npmmirror.com/turbo-linux-arm64/1.8.8
+      turbo-windows-64: registry.npmmirror.com/turbo-windows-64/1.8.8
+      turbo-windows-arm64: registry.npmmirror.com/turbo-windows-arm64/1.8.8
     dev: true
 
   registry.npmmirror.com/type-check/0.3.2:

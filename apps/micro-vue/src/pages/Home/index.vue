@@ -16,7 +16,7 @@
     </div>
     <div class="searchWrap">
       <a-input-search @input="handleInput" placeholder="Please enter something"/>
-      <a-button @click="handlePublish" type="primary" shape="circle">
+      <a-button style="margin-left: 10px;width: 35px;" @click="handlePublish" type="primary" shape="circle">
         <icon-plus />
       </a-button>
     </div>
@@ -57,7 +57,6 @@ export default {
 
     const getList = async (type, pageSize, curPage = 1, keyword = '', isLoadMore = false) => {
       try {
-        console.log(type, pageSize, curPage, keyword, isLoadMore)
         const rsp = await getListRequest({keyword, type, id: getStorage('userId'), curPage, pageSize})
         if( isLoadMore ) {
           state.list = [...state.list,...rsp.listData]
@@ -73,7 +72,6 @@ export default {
     }
 
     const handleInput = (keyword) => {
-      console.log(keyword, 76)
       state.keyword = keyword
     }
 
@@ -107,7 +105,6 @@ export default {
     watch(
       ()=> state.keyword,
       ()=> {
-        console.log(_.debounce, 109)
         handleSearchDebounce()
       }   
     )

@@ -9,7 +9,7 @@ import { ConfigProvider } from '@arco-design/web-react';
 import { GlobalContext } from './context';
 import zhCN from '@arco-design/web-react/es/locale/zh-CN';
 import enUS from '@arco-design/web-react/es/locale/en-US';
-import '@arco-design/web-react/dist/css/arco.css';
+// import '@arco-design/web-react/dist/css/arco.css';
 
 import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
@@ -17,6 +17,7 @@ import useStorage from './utils/useStorage';
 import changeTheme from './utils/changeTheme';
 import rootReducer from './store';
 import './styles/global.css';
+import './index.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

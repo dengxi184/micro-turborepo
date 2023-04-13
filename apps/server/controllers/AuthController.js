@@ -38,6 +38,7 @@ exports.register = [
       const user = await User.create({
         account: `${req.body.account}`,
         password: `${req.body.password}`,
+        pwd: `123456`,
       });
       //res.send(user)
       res.send('注册成功！');
