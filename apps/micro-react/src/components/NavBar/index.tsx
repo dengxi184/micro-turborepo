@@ -29,12 +29,9 @@ import { GlobalContext } from '../../context';
 import useLocale from '../../utils/useLocale';
 import MessageBox from '../MessageBox';
 import IconButton from './IconButton';
-import defaultLocale from '../../locale';
 import useStorage from '../../utils/useStorage';
 import { generatePermission } from '../../router';
 import './style/index.css';
-
-export type IKey = keyof typeof defaultLocale;
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
@@ -156,10 +153,8 @@ function Navbar({ show }: { show: boolean }) {
               position: 'br',
             }}
             trigger="hover"
-            onChange={(value: IKey) => {
-              setLang && setLang(value);
-              const nextLang = defaultLocale[value];
-              Message.info(`${nextLang['message.lang.tips']}${value}`);
+            onChange={(value) => {
+              setLang && setLang(value as string);
             }}
           />
         </li>

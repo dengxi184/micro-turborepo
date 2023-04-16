@@ -40,7 +40,7 @@ export const ImgUpload = () => {
           const formData = new FormData();
           formData.append('file', imgBuffList[idx].value);
           const rsp = await (
-            await fetch('http://localhost:3000/api/upload/upload-img', {
+            await fetch('http://43.136.20.18:9000/api/upload/upload-img', {
               method: 'POST',
               body: formData,
             })

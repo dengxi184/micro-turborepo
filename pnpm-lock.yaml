@@ -16,7 +16,7 @@ importers:
       lint-staged: 13.2.0
       prettier: 2.8.4
       sort-package-json: 2.4.1
-      turbo: registry.npmmirror.com/turbo/1.8.8
+      turbo: registry.npmmirror.com/turbo/1.9.1
 
   apps/micro-react:
     specifiers:
@@ -100,6 +100,7 @@ importers:
       typescript: ^4.4.2
       web-vitals: ^2.1.0
       webpack: ^5.64.4
+      webpack-bundle-analyzer: ^4.8.0
       webpack-dev-server: ^4.6.0
       webpack-manifest-plugin: ^4.0.2
       workbox-webpack-plugin: ^6.4.1
@@ -188,6 +189,7 @@ importers:
       '@types/testing-library__jest-dom': registry.npmmirror.com/@types/testing-library__jest-dom/5.14.5
       react-app-rewired: registry.npmmirror.com/react-app-rewired/2.2.1_react-scripts@5.0.1
       tsconfig: link:../../packages/tsconfig
+      webpack-bundle-analyzer: registry.npmmirror.com/webpack-bundle-analyzer/4.8.0
 
   apps/micro-vue:
     specifiers:
@@ -3455,11 +3457,6 @@ packages:
   /ansi-styles/5.2.0:
     resolution: {integrity: sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==}
     engines: {node: '>=10'}
-
-  /ansi-styles/6.2.1:
-    resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
-    engines: {node: '>=12'}
-    dev: true
 
   /anymatch/3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
@@ -10310,7 +10307,7 @@ packages:
     resolution: {integrity: sha512-pSyv7bSTC7ig9Dcgbw9AuRNUb5k5V6oDudjZoMBSr13qpLBG7tB+zgCkARjq7xIUgdz5P1Qe8u+rSGdouOOIyQ==}
     engines: {node: '>=8'}
     dependencies:
-      ansi-styles: 4.3.0
+      ansi-styles: registry.npmmirror.com/ansi-styles/4.3.0
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
     dev: true
@@ -10319,7 +10316,7 @@ packages:
     resolution: {integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==}
     engines: {node: '>=10'}
     dependencies:
-      ansi-styles: 4.3.0
+      ansi-styles: registry.npmmirror.com/ansi-styles/4.3.0
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
     dev: true
@@ -10328,7 +10325,7 @@ packages:
     resolution: {integrity: sha512-FC+lgizVPfie0kkhqUScwRu1O/lF6NOgJmlCgK+/LYxDCTk8sGelYaHDhFcDN+Sn3Cv+3VSa4Byeo+IMCzpMgQ==}
     engines: {node: '>=12'}
     dependencies:
-      ansi-styles: 6.2.1
+      ansi-styles: registry.npmmirror.com/ansi-styles/6.2.1
       is-fullwidth-code-point: 4.0.0
     dev: true
 
@@ -11646,7 +11643,7 @@ packages:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
     engines: {node: '>=8'}
     dependencies:
-      ansi-styles: 4.3.0
+      ansi-styles: registry.npmmirror.com/ansi-styles/4.3.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
     dev: true
@@ -11655,7 +11652,7 @@ packages:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
     engines: {node: '>=10'}
     dependencies:
-      ansi-styles: 4.3.0
+      ansi-styles: registry.npmmirror.com/ansi-styles/4.3.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
@@ -16530,6 +16527,13 @@ packages:
     name: ansi-styles
     version: 5.2.0
     engines: {node: '>=10'}
+
+  registry.npmmirror.com/ansi-styles/6.2.1:
+    resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ansi-styles/-/ansi-styles-6.2.1.tgz}
+    name: ansi-styles
+    version: 6.2.1
+    engines: {node: '>=12'}
+    dev: true
 
   registry.npmmirror.com/any-promise/1.3.0:
     resolution: {integrity: sha512-7UvmKalWRt1wgjL1RrGxoSJW/0QZFIegpeGvZG9kjp8vrRu55XTHbwnqq2GpXm9uLbcuhxm3IqX9OB4MZR1b2A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/any-promise/-/any-promise-1.3.0.tgz}
@@ -26871,79 +26875,79 @@ packages:
       tslib: registry.npmmirror.com/tslib/1.14.1
       typescript: registry.npmmirror.com/typescript/4.9.5
 
-  registry.npmmirror.com/turbo-darwin-64/1.8.8:
-    resolution: {integrity: sha512-18cSeIm7aeEvIxGyq7PVoFyEnPpWDM/0CpZvXKHpQ6qMTkfNt517qVqUTAwsIYqNS8xazcKAqkNbvU1V49n65Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-64/-/turbo-darwin-64-1.8.8.tgz}
+  registry.npmmirror.com/turbo-darwin-64/1.9.1:
+    resolution: {integrity: sha512-IX/Ph4CO80lFKd9pPx3BWpN2dynt6mcUFifyuHUNVkOP1Usza/G9YuZnKQFG6wUwKJbx40morFLjk1TTeLe04w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-64/-/turbo-darwin-64-1.9.1.tgz}
     name: turbo-darwin-64
-    version: 1.8.8
+    version: 1.9.1
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-darwin-arm64/1.8.8:
-    resolution: {integrity: sha512-ruGRI9nHxojIGLQv1TPgN7ud4HO4V8mFBwSgO6oDoZTNuk5ybWybItGR+yu6fni5vJoyMHXOYA2srnxvOc7hjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-arm64/-/turbo-darwin-arm64-1.8.8.tgz}
+  registry.npmmirror.com/turbo-darwin-arm64/1.9.1:
+    resolution: {integrity: sha512-6tCbmIboy9dTbhIZ/x9KIpje73nvxbiyVnHbr9xKnsxLJavD0xqjHZzbL5U2tHp8chqmYf0E4WYOXd+XCNg+OQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-arm64/-/turbo-darwin-arm64-1.9.1.tgz}
     name: turbo-darwin-arm64
-    version: 1.8.8
+    version: 1.9.1
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-linux-64/1.8.8:
-    resolution: {integrity: sha512-N/GkHTHeIQogXB1/6ZWfxHx+ubYeb8Jlq3b/3jnU4zLucpZzTQ8XkXIAfJG/TL3Q7ON7xQ8yGOyGLhHL7MpFRg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-linux-64/-/turbo-linux-64-1.8.8.tgz}
+  registry.npmmirror.com/turbo-linux-64/1.9.1:
+    resolution: {integrity: sha512-ti8XofnJFO1XaadL92lYJXgxb0VBl03Yu9VfhxkOTywFe7USTLBkJcdvQ4EpFk/KZwLiTdCmT2NQVxsG4AxBiQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-linux-64/-/turbo-linux-64-1.9.1.tgz}
     name: turbo-linux-64
-    version: 1.8.8
+    version: 1.9.1
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-linux-arm64/1.8.8:
-    resolution: {integrity: sha512-hKqLbBHgUkYf2Ww8uBL9UYdBFQ5677a7QXdsFhONXoACbDUPvpK4BKlz3NN7G4NZ+g9dGju+OJJjQP0VXRHb5w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-linux-arm64/-/turbo-linux-arm64-1.8.8.tgz}
+  registry.npmmirror.com/turbo-linux-arm64/1.9.1:
+    resolution: {integrity: sha512-XYvIbeiCCCr+ENujd2Jtck/lJPTKWb8T2MSL/AEBx21Zy3Sa7HgrQX6LX0a0pNHjaleHz00XXt1D0W5hLeP+tA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-linux-arm64/-/turbo-linux-arm64-1.9.1.tgz}
     name: turbo-linux-arm64
-    version: 1.8.8
+    version: 1.9.1
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-windows-64/1.8.8:
-    resolution: {integrity: sha512-2ndjDJyzkNslXxLt+PQuU21AHJWc8f6MnLypXy3KsN4EyX/uKKGZS0QJWz27PeHg0JS75PVvhfFV+L9t9i+Yyg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-windows-64/-/turbo-windows-64-1.8.8.tgz}
+  registry.npmmirror.com/turbo-windows-64/1.9.1:
+    resolution: {integrity: sha512-x7lWAspe4/v3XQ0gaFRWDX/X9uyWdhwFBPEfb8BA0YKtnsrPOHkV0mRHCRrXzvzjA7pcDCl2agGzb7o863O+Jg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-windows-64/-/turbo-windows-64-1.9.1.tgz}
     name: turbo-windows-64
-    version: 1.8.8
+    version: 1.9.1
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo-windows-arm64/1.8.8:
-    resolution: {integrity: sha512-xCA3oxgmW9OMqpI34AAmKfOVsfDljhD5YBwgs0ZDsn5h3kCHhC4x9W5dDk1oyQ4F5EXSH3xVym5/xl1J6WRpUg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-windows-arm64/-/turbo-windows-arm64-1.8.8.tgz}
+  registry.npmmirror.com/turbo-windows-arm64/1.9.1:
+    resolution: {integrity: sha512-QSLNz8dRBLDqXOUv/KnoesBomSbIz2Huef/a3l2+Pat5wkQVgMfzFxDOnkK5VWujPYXz+/prYz+/7cdaC78/kw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-windows-arm64/-/turbo-windows-arm64-1.9.1.tgz}
     name: turbo-windows-arm64
-    version: 1.8.8
+    version: 1.9.1
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  registry.npmmirror.com/turbo/1.8.8:
-    resolution: {integrity: sha512-qYJ5NjoTX+591/x09KgsDOPVDUJfU9GoS+6jszQQlLp1AHrf1wRFA3Yps8U+/HTG03q0M4qouOfOLtRQP4QypA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo/-/turbo-1.8.8.tgz}
+  registry.npmmirror.com/turbo/1.9.1:
+    resolution: {integrity: sha512-Rqe8SP96e53y4Pk29kk2aZbA8EF11UtHJ3vzXJseadrc1T3V6UhzvAWwiKJL//x/jojyOoX1axnoxmX3UHbZ0g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo/-/turbo-1.9.1.tgz}
     name: turbo
-    version: 1.8.8
+    version: 1.9.1
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      turbo-darwin-64: registry.npmmirror.com/turbo-darwin-64/1.8.8
-      turbo-darwin-arm64: registry.npmmirror.com/turbo-darwin-arm64/1.8.8
-      turbo-linux-64: registry.npmmirror.com/turbo-linux-64/1.8.8
-      turbo-linux-arm64: registry.npmmirror.com/turbo-linux-arm64/1.8.8
-      turbo-windows-64: registry.npmmirror.com/turbo-windows-64/1.8.8
-      turbo-windows-arm64: registry.npmmirror.com/turbo-windows-arm64/1.8.8
+      turbo-darwin-64: registry.npmmirror.com/turbo-darwin-64/1.9.1
+      turbo-darwin-arm64: registry.npmmirror.com/turbo-darwin-arm64/1.9.1
+      turbo-linux-64: registry.npmmirror.com/turbo-linux-64/1.9.1
+      turbo-linux-arm64: registry.npmmirror.com/turbo-linux-arm64/1.9.1
+      turbo-windows-64: registry.npmmirror.com/turbo-windows-64/1.9.1
+      turbo-windows-arm64: registry.npmmirror.com/turbo-windows-arm64/1.9.1
     dev: true
 
   registry.npmmirror.com/type-check/0.3.2:

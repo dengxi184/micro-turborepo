@@ -42,7 +42,7 @@ const useUpload = (): [
   ) => {
     fileChunkListReqData[index].uploaded = uploadState.uploading;
     setFileChunkListReqData([...fileChunkListReqData]);
-    const task = fetch('http://localhost:3000/api/upload/upload-file', {
+    const task = fetch('http://43.136.20.18:9000/api/upload/upload-file', {
       method: 'POST',
       body: formData,
       signal,

@@ -64,7 +64,7 @@ const ChildApp = () => {
       setConfirmLoading(true);
       // const rsp = await toPrivateRequest({id: getStorage('userId'), password: encrypt(passWordValue)})
       // console.log(rsp,60);
-      const rsp = await fetch('http://localhost:3000/api/auth/validate', {
+      const rsp = await fetch('http://43.136.20.18:9000/api/auth/validate', {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const ChildApp = () => {
           pwd: encrypt(passWordValue),
         }),
       });
-      //if( rsp.status !== 200 ) throw new Error()
+      if (rsp.status !== 200) throw new Error();
       Message.success('这是私人空间！');
       (linkRef.current as HTMLAnchorElement)!.click();
     } catch (err) {

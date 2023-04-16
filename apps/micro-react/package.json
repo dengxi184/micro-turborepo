@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "analyz": "NODE_ENV=production npm_config_report=true pnpm run build",
     "build": "node scripts/build.js",
     "dev": "node scripts/start.js",
     "test": "node scripts/test.js"
@@ -167,6 +168,7 @@
     "@types/testing-library__jest-dom": "^5.14.5",
     "react-app-rewired": "^2.2.1",
     "tsconfig": "workspace:*",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "webpack-bundle-analyzer": "^4.8.0"
   }
 }

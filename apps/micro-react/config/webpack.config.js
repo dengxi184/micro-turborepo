@@ -4,27 +4,43 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const resolve = require('resolve');
+// 生成一个 HTML5 文件， 在 body 中使用 script 标签引入你所有 webpack 生成的 bundle
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 路径校验，有错直接报，解决 mac系统中文件名大小写不敏感导致的打包不报错的问题。
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+// webpack运行时代码放在html中，而不是浪费一个请求去加载js文件。
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+// 用于压缩js，允许自定义压缩函数，多进程压缩（基本所有的plugins都有），在开发阶段干掉console等等
 const TerserPlugin = require('terser-webpack-plugin');
+// 从js中提取到单独的css文件中来
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// 使用 cssnano 优化和压缩 CSS。
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+// 形成一个manifest.json文件，维护资源清单（原文件名和带哈希文件名的映射，有助于更快找到源文件），例如某些包内容没变，hash值也不会变，文件内容可以复用
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+// 允许在index.html实用变量
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+// 离线缓存
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+// src/之外的文件导入报错（导入限制）
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
+// 代码规范
 const ESLintPlugin = require('eslint-webpack-plugin');
 const paths = require('./paths');
 const modules = require('./modules');
 const getClientEnvironment = require('./env');
+
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
+// 关闭编译主进程中的类型检查功能，同步用 fork-ts-checker-webpack-plugin 插件将其剥离到单独进程执行
 const ForkTsCheckerWebpackPlugin =
   process.env.TSC_COMPILE_ON_ERROR === 'true'
     ? require('react-dev-utils/ForkTsCheckerWarningWebpackPlugin')
     : require('react-dev-utils/ForkTsCheckerWebpackPlugin');
+// react组件热更新，提升无需重新编译所有模块
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+// 打包分析
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
 
@@ -108,7 +124,6 @@ module.exports = function (webpackEnv) {
 
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
-    console.log(111);
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
@@ -196,6 +211,7 @@ module.exports = function (webpackEnv) {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
+    // 开发者工具
     devtool: isEnvProduction
       ? shouldUseSourceMap
         ? 'source-map'
@@ -295,6 +311,37 @@ module.exports = function (webpackEnv) {
         // This is only used in production mode
         new CssMinimizerPlugin(),
       ],
+      // splitChunks: {
+      //   chunks: "all",
+      //   // 根据缓存组配置去分包 提取公共逻辑
+      //   cacheGroups: {
+      //     // react react-dom react-router-dom等一起打包成一个js文件
+      //     react: {
+      //       test: /[\\/]node_modules[\\/]react(.*)?[\\/]/,
+      //       name: "chunk-react",
+      //       priority: 40,
+      //     },
+      //     // arco-design 单独打包
+      //     arco: {
+      //       test: /[\\/]node_modules[\\/]@arco-design[\\/]/,
+      //       name: "chunk-arcod",
+      //       priority: 30,
+      //     },
+      //     // 剩下node_modules单独打包
+      //     libs: {
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name: "chunk-libs",
+      //       priority: 20,
+      //     },
+      //      // 默认公共逻辑提取
+      //     default: {
+      //       minChunks: 2,
+      //       name: "chunk-default",
+      //       priority: -20,
+      //       reuseExistingChunk: true
+      //     }
+      //   },
+      // },
     },
     resolve: {
       // This allows you to set a fallback for where webpack should look for modules.
@@ -432,6 +479,8 @@ module.exports = function (webpackEnv) {
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
                     require.resolve('react-refresh/babel'),
+                  // "@babel/plugin-transform-runtime" 配合@babel/plugin-runtime？辅助代码提出来当作公共模块调用
+                  // require.resolve('@babel/plugin-transform-runtime')
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -595,6 +644,8 @@ module.exports = function (webpackEnv) {
       ].filter(Boolean),
     },
     plugins: [
+      // 打包分析
+      // new BundleAnalyzerPlugin(),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
