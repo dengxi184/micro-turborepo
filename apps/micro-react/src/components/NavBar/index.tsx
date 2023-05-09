@@ -38,7 +38,7 @@ function Navbar({ show }: { show: boolean }) {
   const { userInfo, userLoading } = useSelector((state: GlobalState) => state);
   const dispatch = useDispatch();
 
-  const [_, setUserStatus] = useStorage('userStatus');
+  const [, setUserStatus] = useStorage('userStatus');
   // 角色逻辑 后续要改
   const [role, setRole] = useStorage('userRole', 'admin');
 

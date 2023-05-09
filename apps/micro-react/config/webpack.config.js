@@ -370,6 +370,8 @@ module.exports = function (webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        '@': path.resolve(__dirname, '../src'),
+        '@utils': path.resolve(__dirname, '../src/utils'),
       },
       plugins: [
         // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -481,6 +483,7 @@ module.exports = function (webpackEnv) {
                     require.resolve('react-refresh/babel'),
                   // "@babel/plugin-transform-runtime" 配合@babel/plugin-runtime？辅助代码提出来当作公共模块调用
                   // require.resolve('@babel/plugin-transform-runtime')
+                  require.resolve('../plugins/addTransfy'),
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/

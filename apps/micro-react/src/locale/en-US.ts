@@ -7,4 +7,5 @@ export default {
   'menu.photoCollection.scenery': 'scenery',
   'menu.storage': 'storage',
   'menu.storage.file': 'file',
+  // insert new translation here
 };

@@ -7,4 +7,5 @@ export default {
   'menu.photoCollection.scenery': '风景',
   'menu.storage': '储存',
   'menu.storage.file': '文件',
+  // insert new translation here
 };

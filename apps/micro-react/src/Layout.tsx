@@ -72,7 +72,7 @@ function PageLayout() {
   const history = useHistory();
   const pathname = history.location.pathname;
   const currentComponent = qs.parseUrl(pathname).url.slice(1);
-  const locale = useLocale();
+  const [, translate] = useLocale();
   const { settings, userLoading, userInfo } = useSelector(
     (state: GlobalState) => state,
   );
@@ -103,7 +103,7 @@ function PageLayout() {
 
   const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes]);
 
-  function renderRoutes(locale: Record<string, string>) {
+  function renderRoutes(translate: (key: string) => string) {
     routeMap.current.clear();
     return function travel(
       _routes: IRoute[],
@@ -115,7 +115,7 @@ function PageLayout() {
         const iconDom = getIconFromKey(route.key);
         const titleDom = (
           <>
-            {iconDom} {locale[route.name] || route.name}
+            {iconDom} {translate(route.name) || route.name}
           </>
         );
 
@@ -230,7 +230,7 @@ function PageLayout() {
                     setOpenKeys(openKeys)
                   }
                 >
-                  {renderRoutes(locale)(routes, 1)}
+                  {renderRoutes(translate)(routes, 1)}
                 </Menu>
               </div>
               <div className={'collapse-btn'} onClick={toggleCollapse}>
@@ -245,7 +245,9 @@ function PageLayout() {
                   <Breadcrumb>
                     {breadcrumb.map((node, index) => (
                       <Breadcrumb.Item key={index}>
-                        {typeof node === 'string' ? locale[node] || node : node}
+                        {typeof node === 'string'
+                          ? translate(node) || node
+                          : node}
                       </Breadcrumb.Item>
                     ))}
                   </Breadcrumb>
