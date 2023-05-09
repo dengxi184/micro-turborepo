@@ -2,6 +2,7 @@
   "name": "my-turborepo",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -10,12 +11,25 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "i18n": "node plugin/translation"
   },
   "devDependencies": {
+    "@babel/generator": "^7.21.5",
+    "@babel/parser": "^7.21.4",
+    "@babel/template": "^7.20.7",
+    "@babel/traverse": "^7.21.4",
+    "@babel/types": "^7.21.5",
+    "@types/babel__traverse": "^7.18.3",
+    "@types/node": "^16.7.13",
+    "axios": "^1.2.2",
+    "babel-template": "^6.26.0",
+    "babel-types": "^6.26.0",
     "eslint-config-custom": "workspace:*",
+    "fs": "0.0.1-security",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
+    "path": "^0.12.7",
     "prettier": "^2.8.4",
     "sort-package-json": "^2.4.1",
     "turbo": "latest"

@@ -6,7 +6,7 @@
         <template #articleList>
           <a-list :max-height="360" @reach-bottom="handleLoadMoreThrottle" >
             <a-list-item @click="toDetails(article.id)" class="list-item" v-for="article in list" :key="article.id">{{ article.title }}</a-list-item>
-            <template #scroll-loading>
+            <template #scroll-loading>  
               <div v-if="bottom">No more data</div>
               <a-spin v-else />
             </template>

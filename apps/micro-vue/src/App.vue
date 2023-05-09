@@ -5,7 +5,7 @@
 <script>
 import Home from '@/pages/Home/index.vue'
 
-export default {
+export default{
   components:{ Home },
   
   setup() {
