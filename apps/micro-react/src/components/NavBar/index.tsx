@@ -1,17 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import {
   Tooltip,
-  Input,
-  Avatar,
   Select,
-  Dropdown,
   Menu,
   Divider,
   Message,
 } from '@arco-design/web-react';
 import {
   IconLanguage,
-  IconNotification,
   IconSunFill,
   IconMoonFill,
   IconUser,
@@ -21,13 +17,11 @@ import {
   IconDashboard,
   IconInteraction,
   IconTag,
-  IconLoading,
 } from '@arco-design/web-react/icon';
 import { useSelector, useDispatch } from 'react-redux';
 import { GlobalState } from '../../store';
 import { GlobalContext } from '../../context';
 import useLocale from '../../utils/useLocale';
-import MessageBox from '../MessageBox';
 import IconButton from './IconButton';
 import useStorage from '../../utils/useStorage';
 import { generatePermission } from '../../router';
@@ -37,7 +31,7 @@ function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
   const { userInfo, userLoading } = useSelector((state: GlobalState) => state);
   const dispatch = useDispatch();
-
+  console.log(userInfo, 40);
   const [, setUserStatus] = useStorage('userStatus');
   // 角色逻辑 后续要改
   const [role, setRole] = useStorage('userRole', 'admin');
@@ -134,12 +128,6 @@ function Navbar({ show }: { show: boolean }) {
       </div>
       <ul className={`right`}>
         <li>
-          <Input.Search
-            className={`round`}
-            placeholder={t['navbar.search.placeholder']}
-          />
-        </li>
-        <li>
           <Select
             triggerElement={<IconButton icon={<IconLanguage />} />}
             options={[
@@ -159,11 +147,6 @@ function Navbar({ show }: { show: boolean }) {
           />
         </li>
         <li>
-          <MessageBox>
-            <IconButton icon={<IconNotification />} />
-          </MessageBox>
-        </li>
-        <li>
           <Tooltip
             content={
               theme === 'light'
@@ -179,19 +162,6 @@ function Navbar({ show }: { show: boolean }) {
             />
           </Tooltip>
         </li>
-        {userInfo && (
-          <li>
-            <Dropdown droplist={droplist} position="br" disabled={userLoading}>
-              <Avatar size={32} style={{ cursor: 'pointer' }}>
-                {userLoading ? (
-                  <IconLoading />
-                ) : (
-                  <img alt="avatar" src={userInfo.avatar} />
-                )}
-              </Avatar>
-            </Dropdown>
-          </li>
-        )}
       </ul>
     </div>
   );

@@ -38,9 +38,9 @@ interface MessageListProps {
 }
 
 function MessageList(props: MessageListProps) {
-  const t = useLocale();
+  const [, translate] = useLocale();
   const { data, unReadData } = props;
-
+  console.log(data, 43);
   function onItemClick(item: MessageItemData, index: number) {
     if (item.status) return;
     props.onItemClick && props.onItemClick(item, index);
@@ -52,17 +52,19 @@ function MessageList(props: MessageListProps) {
 
   return (
     <List
-      noDataElement={<Result status="404" subTitle={t['message.empty.tips']} />}
+      noDataElement={
+        <Result status="404" subTitle={translate('message.empty.tips')} />
+      }
       footer={
         <div className={'footer'}>
           <div className={'footer-item'}>
             <Button type="text" size="small" onClick={onAllBtnClick}>
-              {t['message.allRead']}
+              {translate('message.allRead')}
             </Button>
           </div>
           <div className={'footer-item'}>
             <Button type="text" size="small">
-              {t['message.seeMore']}
+              {translate('message.seeMore')}
             </Button>
           </div>
         </div>

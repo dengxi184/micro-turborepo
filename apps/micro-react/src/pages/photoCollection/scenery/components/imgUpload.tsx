@@ -7,69 +7,62 @@ import compressPic from '../utils/compressPic';
 
 const CollapseItem = Collapse.Item;
 
-export const ImgUpload = () => {
-  const [imgBuffList, setImgBuffList] = useState([]);
-  const [fileList, setFileList] = useState([]);
+export interface IImgFile {
+  uid: number;
+  percent: number;
+  name: string;
+  url: string;
+  status: string;
+}
 
-  const beforeUpload = async (file: File, fileList: File[]) => {
-    const promiseList = fileList.map((file) => compressPic(file));
-    const buffList = await Promise.allSettled(promiseList);
-    setImgBuffList([...buffList]);
+export const ImgUpload = () => {
+  const [fileList, setFileList] = useState([]);
+  const [curFile, setCurFile] = useState<IImgFile>();
+
+  const beforeUpload = async (file: File) => {
+    try {
+      const compressFile = await compressPic(file);
+      const formData = new FormData();
+      formData.append('file', compressFile);
+      const rsp = await (
+        await fetch('http://localhost:3000/api/upload/upload-img', {
+          method: 'POST',
+          body: formData,
+        })
+      ).json();
+      const { createAt, fileName, filePath } = rsp;
+      const imgFile = {
+        uid: +createAt,
+        percent: 1,
+        name: fileName,
+        url: filePath,
+        status: 'done',
+      };
+      setCurFile(imgFile);
+    } catch (err) {
+      console.log('上传失败', err);
+    }
     return false;
   };
 
   const cancelUpload = async (file) => {
     try {
+      console.log(file, fileList);
       const { uid, url } = file;
-      const fileName = `${uid}.${
-        url.split('/')[url.split('/').length - 1].split('.')[1]
-      }`;
+      const urlSplit = url.split('/');
+      const fileName = `${uid}.${urlSplit[urlSplit.length - 1].split('.')[1]}`;
       deleteImgRequest({ fileName, createAt: uid });
-      setFileList([...fileList.filter((imgFile) => imgFile.uid !== uid)]);
+      setFileList([
+        ...fileList.filter((imgFile) => imgFile && imgFile.uid !== uid),
+      ]);
     } catch (err) {
       console.log(err, '服务器删除失败');
     }
   };
 
   useEffect(() => {
-    const requestFn = async () => {
-      const success = [];
-      const handleFileList = [];
-      for (const idx in imgBuffList) {
-        try {
-          const formData = new FormData();
-          formData.append('file', imgBuffList[idx].value);
-          const rsp = await (
-            await fetch('http://43.136.20.18:9000/api/upload/upload-img', {
-              method: 'POST',
-              body: formData,
-            })
-          ).json();
-          const { createAt, fileName, filePath } = rsp;
-          const imgFile = {
-            uid: +createAt,
-            percent: 1,
-            name: fileName,
-            url: filePath,
-            status: 'done',
-          };
-          handleFileList[idx] = imgFile;
-          success.push(+idx);
-        } catch (err) {
-          const imgFile = {
-            uid: Date.now(),
-            percent: 0,
-            name: imgBuffList[idx].value.name,
-            url: '',
-            status: 'fail',
-          };
-          handleFileList[idx] = imgFile;
-        }
-      }
-      setFileList([...fileList, ...handleFileList]);
-    };
-    if (imgBuffList.length > 0) requestFn();
-  }, [imgBuffList]);
+    setFileList([...fileList, curFile]);
+  }, [curFile]);
 
   return (
     <CollapseItem header="图片上传" name="1">

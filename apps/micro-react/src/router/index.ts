@@ -26,27 +26,12 @@ export const routes: IRoute[] = [
         name: 'menu.notepad.diary',
         key: 'notepad/diary',
       },
-      {
-        name: 'menu.notepad.preoccupation',
-        key: 'notepad/preoccupation',
-        requiredPermissions: [
-          {
-            resource: 'menu.notepad.preoccupation',
-            actions: ['read', 'write'],
-          },
-          { resource: 'menu.notepad.diary', actions: ['read'] },
-        ],
-      },
     ],
   },
   {
     name: 'menu.photoCollection',
     key: 'photoCollection',
     children: [
-      {
-        name: 'menu.photoCollection.ugly',
-        key: 'photoCollection/ugly',
-      },
       {
         name: 'menu.photoCollection.scenery',
         key: 'photoCollection/scenery',

@@ -42,7 +42,7 @@ responseInterceptors.forEach((interceptor) => {
   interceptors.response.use(interceptor);
 });
 
-const baseUrl = 'http://43.136.20.18:9000/';
+const baseUrl = 'http://localhost:3000/';
 
 const abortMap = new Map();
 

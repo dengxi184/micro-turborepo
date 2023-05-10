@@ -64,7 +64,7 @@ const ChildApp = () => {
       setConfirmLoading(true);
       // const rsp = await toPrivateRequest({id: getStorage('userId'), password: encrypt(passWordValue)})
       // console.log(rsp,60);
-      const rsp = await fetch('http://43.136.20.18:9000/api/auth/validate', {
+      const rsp = await fetch('http://localhost:3000/api/auth/validate', {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json',

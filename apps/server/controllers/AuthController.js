@@ -35,12 +35,11 @@ exports.register = [
         console.log(errors);
         return res.send('注册失败！');
       }
-      const user = await User.create({
+      await User.create({
         account: `${req.body.account}`,
         password: `${req.body.password}`,
         pwd: `123456`,
       });
-      //res.send(user)
       res.send('注册成功！');
     } catch (err) {
       console.log(err);
