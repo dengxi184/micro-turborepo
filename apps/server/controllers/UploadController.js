@@ -36,14 +36,18 @@ exports.getImgList = [
 
 exports.deleteImg = [
   async (req, res) => {
-    const { fileName, creatAt } = req.query;
-    const file = await Img.findOne({ creatAt });
-    if (file) {
-      await Img.deleteOne({ creatAt });
-      await rimraf(`static/images/${fileName}`);
-      res.send({ msg: '删除成功！' });
-    } else {
-      res.send({ msg: '服务器上不存在该文件！' });
+    try {
+      const { fileName, createAt } = req.query;
+      const file = await Img.findOne({ createAt });
+      if (file) {
+        await Img.deleteOne({ createAt });
+        await rimraf(`static/images/${fileName}`);
+        res.send({ msg: '删除成功！' });
+      } else {
+        res.send({ msg: '服务器上不存在该文件！' });
+      }
+    } catch (err) {
+      es.send({ msg: '数据库删除失败！', err });
     }
   },
 ];
