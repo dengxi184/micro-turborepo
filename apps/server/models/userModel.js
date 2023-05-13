@@ -8,6 +8,9 @@ const UserSchema = new mongoose.Schema({
       return require('bcrypt').hashSync(val, 10);
     },
   },
+  planTemplate: {
+    type: Array,
+  },
   pwd: { type: String },
 });
 

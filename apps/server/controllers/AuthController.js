@@ -39,6 +39,10 @@ exports.register = [
         account: `${req.body.account}`,
         password: `${req.body.password}`,
         pwd: `123456`,
+        planTemplate: [
+          `力扣中等难度2题。(简单=0.5中等=0.25困难）`,
+          `学习加背八股2小时。`,
+        ],
       });
       res.send('注册成功！');
     } catch (err) {
