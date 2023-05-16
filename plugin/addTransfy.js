@@ -53,7 +53,7 @@ const findTransNodeVisitor = {
     const value = (path.isTemplateElement() ? path.node.value.raw : path.node.value || '').replace(/\n/g, '').trim();
     if (/[^\x00-\xff]/.test(value)) {
       console.log('中文 ~ ', value);
-      // 排除console
+      // console语句不翻译
       if ( path.findParent(p => p.isCallExpression()) && 
       (path.parent && path.parent.callee && path.parent.callee.object && path.parent.callee.object.name === 'console') ) {
         return;
@@ -75,12 +75,15 @@ const findTransNodeVisitor = {
       if( !Declared ) {
         // 将顶层作用域body插入声明节点
         const declareNode = createDeclareAST()
-        const importNode = createImportAST()
         bodyPathNode.unshift(declareNode)
+
+        // 文件顶部插入引入语句
+        const importNode = createImportAST()    
         programNode.unshift(importNode)
+
+        // 替换
         const replaceExpression = getReplaceExpression(path, value);
         path.replaceWith(replaceExpression);
-        console.log(generate(path.findParent(p => p.isProgram()).node).code)
         path.skip();
       }     
     }
@@ -94,8 +97,7 @@ const createDeclareAST = () => {
   `;
 
   const temp = template(declareTemplate);
-
-  return temp;
+  return temp({});
 }
 
 const createImportAST = () => {
@@ -103,7 +105,7 @@ const createImportAST = () => {
   import useLocale from '@/utils/useLocale'
   `,{ sourceType: "module" });
 
-  return buildRequire
+  return buildRequire({})
 }
 
 const getKey = (source) => {

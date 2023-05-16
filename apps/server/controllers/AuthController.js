@@ -2,6 +2,7 @@ const { body, validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
 const jwt = require('jsonwebtoken');
 
+const planTemplate = require('../utils/planTemplate');
 const User = require('../models/userModel');
 const decrypt = require('../crypt/decrypt');
 // 应该放在代码不被上传和扫描的部分
@@ -39,10 +40,7 @@ exports.register = [
         account: `${req.body.account}`,
         password: `${req.body.password}`,
         pwd: `123456`,
-        planTemplate: [
-          `力扣中等难度2题。(简单=0.5中等=0.25困难）`,
-          `学习加背八股2小时。`,
-        ],
+        planTemplate,
       });
       res.send('注册成功！');
     } catch (err) {

@@ -29,9 +29,8 @@ import './style/index.css';
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
-  const { userInfo, userLoading } = useSelector((state: GlobalState) => state);
+  const { userInfo } = useSelector((state: GlobalState) => state);
   const dispatch = useDispatch();
-  console.log(userInfo, 40);
   const [, setUserStatus] = useStorage('userStatus');
   // 角色逻辑 后续要改
   const [role, setRole] = useStorage('userRole', 'admin');

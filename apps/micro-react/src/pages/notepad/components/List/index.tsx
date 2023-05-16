@@ -1,37 +1,39 @@
-import { List, Popover } from '@arco-design/web-react';
-import {
-  IconCheckCircle,
-  IconCloseCircle,
-  IconLoading,
-} from '@arco-design/web-react/icon';
+import { useState } from 'react';
+import { List, Avatar } from '@arco-design/web-react';
+import { IconCheckCircle } from '@arco-design/web-react/icon';
+import { planProps } from '../../../../api/getPlan/type';
 
-import './index.less';
-// <IconCloseCircle /> <IconLoading />
-const ListComp = () => {
-  return (
-    <List
-      className={`listWrap`}
-      style={{ width: '100%' }}
-      dataSource={[
-        'Beijing Bytedance Technology Co., Ltd.',
-        <>
-          <IconLoading />
-          <Popover
-            position="right"
-            content={
-              <span>
-                <p>Beijing Bytedance Technology Co., Ltd.................</p>
-              </span>
-            }
+const ListComp = ({ changeStatus, list }) => {
+  const render = (actions, item: planProps) => (
+    <List.Item key={item._id} actions={actions}>
+      <List.Item.Meta
+        avatar={
+          <Avatar
+            style={{
+              backgroundColor: item.completed ? 'rgb(148, 240, 28)' : '',
+              cursor: 'pointer',
+            }}
+            onClick={() => changeStatus(item)}
           >
-            Beijing Bytedance Technology Co., Ltd.
-          </Popover>
-        </>,
-        'Bytedance Technology Co., Ltd.',
-        'Beijing Toutiao Technology Co., Ltd.',
-      ]}
-      render={(item, index) => <List.Item key={index}>{item}</List.Item>}
-    />
+            <IconCheckCircle />
+          </Avatar>
+        }
+        description={item.description}
+      />
+    </List.Item>
+  );
+  return (
+    <>
+      <List
+        className="list-demo-actions"
+        style={{ width: 700 }}
+        dataSource={list}
+        render={render.bind(null, [
+          <span className="list-demo-actions-button">Edit</span>,
+          <span className="list-demo-actions-button">Delete</span>,
+        ])}
+      />
+    </>
   );
 };
 
