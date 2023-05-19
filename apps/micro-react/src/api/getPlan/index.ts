@@ -1,4 +1,4 @@
-import { get, post } from '../../common/request';
+import { get, post, del } from '../../common/request';
 import {
   getPlanListResponse,
   getPlanListOptions,
@@ -8,6 +8,8 @@ import {
   addPlansResponse,
   updateStatusOptions,
   updateStatusResponse,
+  deletePlanOptions,
+  deletePlanResponse,
 } from './type';
 
 const url = 'api/plan';
@@ -39,6 +41,13 @@ export const addPlanRequest = async (options: addPlansOptions) => {
 export const updateStatusRequest = async (options: updateStatusOptions) => {
   return post<updateStatusResponse>({
     input: `${url}/update-plan`,
+    init: { body: { ...options } },
+  });
+};
+
+export const deletePlanRequest = async (options: deletePlanOptions) => {
+  return del<deletePlanResponse>({
+    input: `${url}/del-plan`,
     init: { body: { ...options } },
   });
 };

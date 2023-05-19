@@ -73,8 +73,12 @@ exports.addPlan = [
 exports.updatePlan = [
   async (req, res) => {
     try {
-      const { _id, completed } = req.body;
-      await Plan.updateOne({ _id }, { completed });
+      const { _id, completed, description } = req.body;
+      if (typeof completed === 'undefined') {
+        await Plan.updateOne({ _id }, { description });
+      } else {
+        await Plan.updateOne({ _id }, { completed });
+      }
       const plan = await Plan.findOne({ _id });
       res.send({
         plan,
@@ -90,8 +94,8 @@ exports.updatePlan = [
 exports.deletePlan = [
   async (req, res) => {
     try {
-      const { planId } = req.query;
-      await Plan.deleteOne({ _id: planId });
+      const { _id } = req.body;
+      await Plan.deleteOne({ _id });
       res.send({
         msg: '计划删除成功！',
       });

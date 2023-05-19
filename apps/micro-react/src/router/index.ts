@@ -23,8 +23,8 @@ export const routes: IRoute[] = [
     key: 'notepad',
     children: [
       {
-        name: 'menu.notepad.diary',
-        key: 'notepad/diary',
+        name: 'menu.notepad.plan',
+        key: 'notepad/plan',
       },
     ],
   },

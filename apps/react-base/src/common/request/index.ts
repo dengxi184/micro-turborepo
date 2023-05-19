@@ -35,7 +35,7 @@ forEach(responseInterceptors, (interceptor) => {
   interceptors.response.use(interceptor);
 });
 
-const baseUrl = 'http://localhost:3000/';
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const abortMap = new Map();
 const request = <T = any>(

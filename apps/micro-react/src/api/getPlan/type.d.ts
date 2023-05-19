@@ -7,13 +7,13 @@ export interface getPlanListResponse {
   planList: planProps[];
 }
 
-export interface planProps {
+export type planProps = {
   date: string;
   description: string;
   completed: boolean;
   id: string;
   _id?: string;
-}
+};
 
 export interface getPlanTemplateOptions {
   id: string;
@@ -25,7 +25,7 @@ export interface getPlanTemplateResponse {
 
 export interface addPlansOptions {
   date: string;
-  id: number;
+  id: string;
   planList: planProps[];
 }
 
@@ -35,9 +35,16 @@ export interface addPlansResponse {
 
 export interface updateStatusOptions {
   _id: string;
-  completed: boolean;
+  completed?: boolean;
+  description?: string;
 }
 
 export interface updateStatusResponse {
   plan: planProps;
 }
+
+export interface deletePlanOptions {
+  _id: string;
+}
+
+export interface deletePlanResponse {}

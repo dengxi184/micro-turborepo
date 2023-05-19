@@ -1,6 +1,6 @@
 export default {
   'menu.notepad': 'notepad',
-  'menu.notepad.diary': 'diary',
+  'menu.notepad.plan': 'plan',
   'menu.photoCollection': 'photoes',
   'menu.photoCollection.scenery': 'scenery',
   'menu.storage': 'storage',
