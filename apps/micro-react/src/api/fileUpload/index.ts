@@ -39,7 +39,10 @@ export const deleteFileRequest = async (options: deleteFileOptions) => {
 };
 
 export const uploadImgRequest = async (options: any) => {
-  return post({ input: `${url}/upload-img`, init: { body: options } });
+  return post({
+    input: `${url}/upload-img`,
+    init: { body: { ...options } },
+  });
 };
 
 export const deleteImgRequest = async (options: deleteImgOptions) => {

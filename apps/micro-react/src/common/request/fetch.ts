@@ -10,6 +10,7 @@ const Cfetch = (cinput: IConfigProps) => {
   const handleInit = interceptorsReq.reduce((preValue, handler) => {
     return handler(preValue);
   }, init) as RequestInit;
+  console.log(handleInit);
   return new Promise((resolve, reject) => {
     fetch(input, handleInit)
       .then((res) => {

@@ -16,4 +16,4 @@ export const defaultRequestInterceptor: ReqProps = (init: RequestInitProps) => {
   return configDefault;
 };
 
-export default [defaultRequestInterceptor];
+export default [];

@@ -1,6 +1,7 @@
 import { Cfetch, interceptors } from './fetch';
 import requestInterceptors from './requestInterceptors';
 import responseInterceptors from './responseInterceptors';
+import { LimitPromise } from './limitPromise';
 
 export interface InterceptorsResProps<T> {
   (init: T): T | Promise<T>;
@@ -41,6 +42,9 @@ requestInterceptors.forEach((interceptor) => {
 responseInterceptors.forEach((interceptor) => {
   interceptors.response.use(interceptor);
 });
+
+// 并发请求上限
+const MAX = 5;
 
 const baseUrl = 'http://localhost:3000/';
 
@@ -89,5 +93,13 @@ export const put = <T = any>(config: Omit<IConfigProps, 'method'>) =>
 
 export const del = <T = any>(config: Omit<IConfigProps, 'method'>) =>
   request<T>('DELETE', config);
+
+export const limitPost = <T = any>(config: Omit<IConfigProps, 'method'>) => {
+  // 调用核心控制器类
+  const limitP = new LimitPromise(MAX);
+  const callback = () => request<T>('PUT', config);
+  limitP.call(callback);
+  return callback;
+};
 
 export const fetch = Cfetch;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Upload, Collapse, type UploadProps } from '@arco-design/web-react';
 
-import { deleteImgRequest } from '../../../../api/fileUpload';
+import { deleteImgRequest, uploadImgRequest } from '../../../../api/fileUpload';
 import { getSupportType } from '../utils/getSupportType';
 import compressPic from '../utils/compressPic';
 
@@ -31,8 +31,10 @@ export type RequestOptions = Pick<
 
 export const ImgUpload = () => {
   const [fileList, setFileList] = useState([]);
+  const [uoloadList, setUploadList] = useState([]);
 
   const customRequest = async (option: RequestOptions) => {
+    console.log(option);
     const { onProgress, onError, onSuccess, file } = option;
     const xhr = new XMLHttpRequest();
     const compressFile = await compressPic(file);
@@ -63,6 +65,15 @@ export const ImgUpload = () => {
         xhr.abort();
       },
     };
+    // try {
+    //   const compressFile = await compressPic(file)
+    //   const formData = new FormData();
+    //   formData.append('file', compressFile);
+    //   const rsp = await uploadImgRequest({formData})
+    //   onSuccess(rsp)
+    // } catch (err) {
+    //   onError(err)
+    // }
   };
 
   const cancelUpload = async (xhr) => {
@@ -72,7 +83,7 @@ export const ImgUpload = () => {
       const FName = `${createAt}.${
         nameSplit[nameSplit.length - 1].split('.')[1]
       }`;
-      deleteImgRequest({ fileName: FName, createAt });
+      await deleteImgRequest({ fileName: FName, createAt });
       setFileList([
         ...fileList.filter((imgFile) => imgFile && imgFile.uid !== xhr.uid),
       ]);
