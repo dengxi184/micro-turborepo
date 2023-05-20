@@ -12,9 +12,9 @@ const Cfetch = (cinput: IConfigProps) => {
   }, init) as RequestInit;
   return new Promise((resolve, reject) => {
     fetch(input, handleInit)
-      .then(async (res) => {
+      .then((res) => {
         // handleRes 是一个pending的promise
-        const handleRes = await interceptorsRes.reduce((preValue, handler) => {
+        const handleRes = interceptorsRes.reduce((preValue, handler) => {
           return handler(preValue);
         }, res);
         resolve(handleRes);

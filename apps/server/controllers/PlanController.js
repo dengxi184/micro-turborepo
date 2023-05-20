@@ -21,7 +21,7 @@ exports.getPlanTemplate = [
 exports.changePlanTemplate = [
   async (req, res) => {
     try {
-      const { planList, id } = req.query;
+      const { planList, id } = req.body;
       await User.updateOne({ _id: id }, { planTemplate: planList });
       res.send({
         msg: '每日计划更新成功！',

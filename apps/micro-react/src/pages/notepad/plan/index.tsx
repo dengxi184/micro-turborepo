@@ -21,7 +21,7 @@ import { planProps } from '../../../api/getPlan/type';
 import { IWindow } from '../../../common/request/requestInterceptors';
 import calculateDate from './utils/calculateDate';
 
-type IPlan = Omit<planProps, 'description'> & {
+export type IPlan = Omit<planProps, 'description'> & {
   description: React.ReactNode | string;
 };
 
@@ -165,6 +165,7 @@ const PlanPage = () => {
     };
     requestFn();
   }, [curDate]);
+
   return (
     <Space wrap align="center">
       <Calendar

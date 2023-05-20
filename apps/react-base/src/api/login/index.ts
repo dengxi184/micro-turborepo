@@ -1,5 +1,5 @@
 import { post } from '../../common/request';
-import { loginOptions, loginResponse } from './type';
+import { loginOptions } from './type';
 
 const url = 'api/auth/login';
 export const loginRequest = async (options: loginOptions) =>

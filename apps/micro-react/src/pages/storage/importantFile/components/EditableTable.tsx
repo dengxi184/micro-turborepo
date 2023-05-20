@@ -12,6 +12,7 @@ import { GlobalState } from '../../../../store';
 import uploadStatusToMap from '../../contants';
 import { deleteFileRequest } from '../../../../api/fileUpload';
 import { createMapWithoutSome } from '../utils/createMap';
+import getStaticFileUrl from '../utils/getStaticFileUrl';
 import { IUploadFileData } from '..';
 function EditableTable({ uploading, setUploading }) {
   const { fileUploadList } = useSelector((state: GlobalState) => state);
@@ -82,7 +83,7 @@ function EditableTable({ uploading, setUploading }) {
 
   const download = async (key: number) => {
     const { fileName } = data.find((item) => item.key === key);
-    window.location.href = `http://localhost:9000/static/files/${fileName}`;
+    window.location.href = getStaticFileUrl(fileName);
   };
 
   return (

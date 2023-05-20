@@ -89,31 +89,3 @@ exports.login = [
     }
   },
 ];
-
-exports.validate = [
-  body('pwd').notEmpty().withMessage('密码不能为空！'),
-  body('id').escape(),
-  body('pwd').escape(),
-  async (req, res) => {
-    try {
-      const { id, pwd } = req.body;
-      const user = await User.findOne({ _id: id });
-      if (!user) {
-        return res.status(422).send({
-          message: '用户名不存在！',
-        }); //客户端提交数据有问题
-      }
-      const isPasswordValid = user.pwd === decrypt(pwd);
-      if (!isPasswordValid) {
-        return res.status(422).send({
-          message: '密码无效',
-        });
-      }
-      res.send({
-        msg: '校验成功！',
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  },
-];
