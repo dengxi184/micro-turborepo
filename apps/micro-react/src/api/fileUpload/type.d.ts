@@ -37,3 +37,14 @@ export interface getImgListOptions {
   curPage: number;
   pageSize: number;
 }
+
+export interface uploadImgOptions {
+  formData: FormData;
+}
+
+export interface uploadImgResponse {
+  createAt: number;
+  fileName: string;
+  filePath: string;
+  msg: string;
+}

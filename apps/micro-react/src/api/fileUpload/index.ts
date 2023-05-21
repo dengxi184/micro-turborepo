@@ -1,4 +1,4 @@
-import { get, post, del } from '../../common/request';
+import { get, post, del, limitPost } from '../../common/request';
 import {
   uploadMergeOptions,
   uploadMergeResponse,
@@ -7,6 +7,8 @@ import {
   uploadRecordResponse,
   deleteImgOptions,
   getImgListOptions,
+  uploadImgOptions,
+  uploadImgResponse,
 } from './type';
 
 const url = 'api/upload';
@@ -38,10 +40,11 @@ export const deleteFileRequest = async (options: deleteFileOptions) => {
   });
 };
 
-export const uploadImgRequest = async (options: any) => {
-  return post({
+export const uploadImgLimitRequest = async (options: uploadImgOptions) => {
+  const { formData } = options;
+  return limitPost<uploadImgResponse>({
     input: `${url}/upload-img`,
-    init: { body: { ...options } },
+    init: { body: formData },
   });
 };
 

@@ -18,7 +18,7 @@ import {
   deletePlanRequest,
 } from '../../../api/getPlan';
 import { planProps } from '../../../api/getPlan/type';
-import { IWindow } from '../../../common/request/requestInterceptors';
+import { IWindow } from '../../../common/request/interceptors/requestInterceptors';
 import calculateDate from './utils/calculateDate';
 
 export type IPlan = Omit<planProps, 'description'> & {

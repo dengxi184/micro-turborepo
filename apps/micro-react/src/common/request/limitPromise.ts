@@ -1,18 +1,20 @@
+type Request<T = any> = () => Promise<T>;
+
 export class LimitPromise {
   _max: number;
   _count: number;
-  _taskQueue: any[];
+  _taskQueue: Request[];
 
-  constructor(max: number) {
+  constructor(max?: number) {
     // 异步任务“并发”上限
-    this._max = max || 6;
+    this._max = max || 5;
     // 当前正在执行的任务数量
     this._count = 0;
     // 等待执行的任务队列
     this._taskQueue = [];
   }
 
-  call(request: any): Promise<any> {
+  call<T>(request: Request) {
     return new Promise((resolve, reject) => {
       const task = this._createTask(request, resolve, reject);
       if (this._count >= this._max) {
@@ -20,26 +22,28 @@ export class LimitPromise {
       } else {
         task();
       }
-    });
+    }) as unknown as Promise<T>;
   }
 
-  _createTask(request: any, resolve: any, reject: any) {
+  _createTask(
+    request: Request,
+    resolve: (value: unknown) => void,
+    reject: (value: unknown) => void,
+  ) {
     return async () => {
       try {
-        await request();
+        this._count++;
+        const rsp = await request();
+        resolve(rsp);
       } catch (err) {
-        resolve(err);
+        reject(err);
       } finally {
         this._count--;
         if (this._taskQueue.length) {
           let task = this._taskQueue.shift();
           task();
-        } else {
-          console.log('task count = ', this._count);
         }
       }
-      this._count++;
-      // console.log('task run , task count = ', this._count)
     };
   }
 }

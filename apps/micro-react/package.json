@@ -5,7 +5,7 @@
   "scripts": {
     "analyz": "NODE_ENV=production npm_config_report=true pnpm run build",
     "build": "node scripts/build.js",
-    "dev": "node scripts/start.js",
+    "dev": "set BROWSER=none && node scripts/start.js",
     "test": "node scripts/test.js"
   },
   "babel": {
