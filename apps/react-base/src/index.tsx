@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import microApp from '@micro-zoe/micro-app';
+
 import './index.less';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
-import microApp from '@micro-zoe/micro-app';
 
 microApp.start();
 

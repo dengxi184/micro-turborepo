@@ -1,19 +1,17 @@
 import type { ReqProps, RequestInitProps } from '..';
-
-export type IWindow = Window &
-  typeof globalThis & { getStorage: (key: string) => any };
+import { getStorage } from '../../../storage';
 
 export const defaultRequestInterceptor: ReqProps = (init: RequestInitProps) => {
   if (!init.method) init.method = 'get';
-  const token = (window as IWindow).getStorage('token');
+  const isFormData = init.body instanceof FormData;
+  const token = getStorage('token');
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
   myHeaders.append('Authorization', `Bearer ${token}`);
-  const configDefault = Object.assign(init, {
-    headers: myHeaders,
-    body: JSON.stringify(init.body),
-  });
-  return configDefault;
+  const bodyObject = isFormData
+    ? null
+    : { headers: myHeaders, body: JSON.stringify(init.body) };
+  return Object.assign(init, bodyObject);
 };
 
 export default [defaultRequestInterceptor];

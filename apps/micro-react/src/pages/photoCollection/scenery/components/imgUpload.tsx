@@ -37,7 +37,7 @@ export const ImgUpload = () => {
       const compressFile = await compressPic(file);
       const formData = new FormData();
       formData.append('file', compressFile);
-      const rsp = await uploadImgLimitRequest({ formData });
+      const rsp = await uploadImgLimitRequest(formData);
       onSuccess(rsp);
     } catch (err) {
       onError(err);

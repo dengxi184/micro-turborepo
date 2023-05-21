@@ -42,8 +42,8 @@ export const deleteFileRequest = async (options: deleteFileOptions) => {
   });
 };
 
-export const uploadImgLimitRequest = async (options: uploadOptions) => {
-  const { formData } = options;
+export const uploadImgLimitRequest = async (formData: FormData) => {
+  console.log(formData);
   return limitPost<uploadImgResponse>({
     input: `${url}/upload-img`,
     init: { body: formData },

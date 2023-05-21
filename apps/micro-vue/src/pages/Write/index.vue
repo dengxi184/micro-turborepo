@@ -22,9 +22,11 @@
 <script>
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
 
-import { onBeforeUnmount, ref, shallowRef, toRefs, reactive, onMounted } from 'vue'
+import { onBeforeUnmount, ref, shallowRef, toRefs, reactive } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { useRouter, useRoute } from 'vue-router'
+
+const { uploadImgLimitRequest, getStorage, publishRequest } = microApp.getGlobalData()
 
 export default {
   components: { Editor, Toolbar },
@@ -43,11 +45,10 @@ export default {
     }
     editorConfig.MENU_CONF['uploadImage'] = {
       async customUpload(file, insertFn) { 
-        //console.log(file)
         try {
-          const fd = new FormData()
-          fd.append('file', file)
-          const rsp = await (await fetch('http://localhost:3000/api/upload/upload-img',{method:'POST',body:fd})).json()
+          const formData = new FormData()
+          formData.append('file', file)
+          const rsp = await uploadImgLimitRequest(formData)
           insertFn(rsp.filePath)
         } catch(err) {
           console.log(err)
@@ -79,6 +80,7 @@ export default {
         const id = getStorage('userId')
         const { type } = state
         if( !title ) return
+        console.log({title, content, id, date: new Date(), type})
         await publishRequest({title, content, id, date: new Date(), type})
         router.push({name: 'Home'})
       } catch(err) {
@@ -90,10 +92,6 @@ export default {
       router.back()
     }
 
-    const uploadImg = async () => {
-      const rsp = await uploadImgRequest({})
-    }
-
     return {
       ...toRefs(state),
       editorRef,
@@ -103,8 +101,7 @@ export default {
       editorConfig,
       handleCreated,
       handleSubmit,
-      handleBack,
-      uploadImg
+      handleBack  
     };
   }
 }

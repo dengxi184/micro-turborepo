@@ -11,6 +11,9 @@
 import { reactive, onMounted, toRefs } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { IconLeftCircle, IconDelete } from '@arco-design/web-vue/es/icon';
+
+const { delArticleRequest, getDetailsRequest } = microApp.getGlobalData()
+
 export default {
   components:{ IconLeftCircle, IconDelete },
   setup() {
@@ -39,7 +42,6 @@ export default {
     onMounted(async ()=> {
       const { id } = route.query
       state.id = id
-
       const rsp = await getDetailsRequest({id})
       const { title, content } = rsp
       state.htmlTitle = `<h1>${title}</h1>`

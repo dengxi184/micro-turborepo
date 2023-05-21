@@ -18,12 +18,14 @@ import {
   deletePlanRequest,
 } from '../../../api/getPlan';
 import { planProps } from '../../../api/getPlan/type';
-import { IWindow } from '../../../common/request/interceptors/requestInterceptors';
 import calculateDate from './utils/calculateDate';
+import { IWindow } from '../../../Layout';
 
 export type IPlan = Omit<planProps, 'description'> & {
   description: React.ReactNode | string;
 };
+
+const { getStorage } = (window as IWindow).microApp.getGlobalData() as any;
 
 const PlanPage = () => {
   const defaultDate = useMemo(() => {
@@ -97,7 +99,7 @@ const PlanPage = () => {
   };
 
   const addPlan = () => {
-    const id = (window as IWindow).getStorage('userId');
+    const id = getStorage('userId');
     setInputValue('');
     const plan = {
       description: (
@@ -121,7 +123,7 @@ const PlanPage = () => {
       onOk: () => {
         return new Promise(async (resolve, reject) => {
           try {
-            const id = (window as IWindow).getStorage('userId');
+            const id = getStorage('userId');
             const { planTemplate } = await getPlanTemplateRequest({ id });
             const planList = planTemplate.map((plan) => {
               return {
@@ -154,14 +156,16 @@ const PlanPage = () => {
   useEffect(() => {
     const requestFn = async () => {
       try {
-        const id = (window as IWindow).getStorage('userId');
+        const id = getStorage('userId');
         const { planList } = await getPlanListRequest({ id, date: curDate });
         if (planList.length === 0) {
           confirm();
         } else {
           setPlanList(planList);
         }
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     };
     requestFn();
   }, [curDate]);

@@ -57,6 +57,7 @@ export default {
 
     const getList = async (type, pageSize, curPage = 1, keyword = '', isLoadMore = false) => {
       try {
+        const { getStorage, getListRequest } = microApp.getGlobalData()
         const rsp = await getListRequest({keyword, type, id: getStorage('userId'), curPage, pageSize})
         if( isLoadMore ) {
           state.list = [...state.list,...rsp.listData]
@@ -89,10 +90,6 @@ export default {
     const toDetails = (id) => {
       router.push({name:'Details', query:{id}})
     }
-   
-    onMounted(()=> {
-      const data = window.microApp.getData()
-    })
 
     watch(
       ()=> state.type,

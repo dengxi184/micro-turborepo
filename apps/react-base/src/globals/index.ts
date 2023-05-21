@@ -7,17 +7,6 @@ import { delArticleRequest } from '../api/deleteArticle';
 import { uploadImgLimitRequest } from '../api/uploadImg';
 import _ from 'lodash';
 
-Object.assign(window, {
-  getStorage,
-  setStorage,
-  removeStorage,
-  publishRequest,
-  getListRequest,
-  getDetailsRequest,
-  delArticleRequest,
-  uploadImgLimitRequest,
-  _,
-});
 microApp.setGlobalData({
   getStorage,
   setStorage,
