@@ -1,8 +1,7 @@
-import { forEach } from 'lodash';
-
 import { Cfetch, interceptors } from './fetch';
-import requestInterceptors from './requestInterceptors';
-import responseInterceptors from './responseInterceptors';
+import requestInterceptors from './interceptors/requestInterceptors';
+import responseInterceptors from './interceptors/responseInterceptors';
+import { LimitPromise } from './limitPromise';
 
 export interface InterceptorsResProps<T> {
   (init: T): T | Promise<T>;
@@ -25,19 +24,31 @@ export interface IConfigProps {
   init: RequestInitProps;
 }
 
+let configDefault = {
+  showError: true,
+  canEmpty: false,
+  returnOrigin: false,
+  withoutCheck: false,
+  mock: false,
+  timeout: 10000,
+};
+
 // 添加请求拦截器
-forEach(requestInterceptors, (interceptor) => {
+requestInterceptors.forEach((interceptor) => {
   interceptors.request.use(interceptor);
 });
 
 // 添加响应拦截器
-forEach(responseInterceptors, (interceptor) => {
+responseInterceptors.forEach((interceptor) => {
   interceptors.response.use(interceptor);
 });
+
+const limitP = new LimitPromise();
 
 const baseUrl = 'http://localhost:3000/';
 
 const abortMap = new Map();
+
 const request = <T = any>(
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   config: IConfigProps,
@@ -45,8 +56,11 @@ const request = <T = any>(
   // 支持中断请求
   const additionalConfig: {
     signal?: AbortSignal;
+    abort?: () => void;
   } = {};
+
   config!.init!.method = method;
+
   if (config?.init?.supportCancel) {
     const key = `${config.input}-${method}`;
     const abortFn = abortMap.get(key);
@@ -61,6 +75,7 @@ const request = <T = any>(
   return Cfetch(
     Object.assign(
       { ...config, input: baseUrl + config.input },
+      configDefault,
       additionalConfig,
     ),
   ) as unknown as Promise<T>;
@@ -77,5 +92,10 @@ export const put = <T = any>(config: Omit<IConfigProps, 'method'>) =>
 
 export const del = <T = any>(config: Omit<IConfigProps, 'method'>) =>
   request<T>('DELETE', config);
+
+export const limitPost = <T = any>(config: Omit<IConfigProps, 'method'>) => {
+  const callback = () => request('POST', config);
+  return limitP.call<T>(callback);
+};
 
 export const fetch = Cfetch;

@@ -1,5 +1,3 @@
-export interface uploadFileOptions {}
-
 export interface uploadFileResponse {}
 
 export interface uploadMergeOptions {
@@ -38,7 +36,7 @@ export interface getImgListOptions {
   pageSize: number;
 }
 
-export interface uploadImgOptions {
+export interface uploadOptions {
   formData: FormData;
 }
 

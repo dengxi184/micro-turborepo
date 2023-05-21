@@ -4,7 +4,7 @@ import { publishRequest } from '../api/publish';
 import { getListRequest } from '../api/getArticleList';
 import { getDetailsRequest } from '../api/getArticleDetails';
 import { delArticleRequest } from '../api/deleteArticle';
-import { uploadImgRequest } from '../api/uploadImg';
+import { uploadImgLimitRequest } from '../api/uploadImg';
 import _ from 'lodash';
 
 Object.assign(window, {
@@ -15,7 +15,7 @@ Object.assign(window, {
   getListRequest,
   getDetailsRequest,
   delArticleRequest,
-  uploadImgRequest,
+  uploadImgLimitRequest,
   _,
 });
 microApp.setGlobalData({
@@ -26,6 +26,6 @@ microApp.setGlobalData({
   getListRequest,
   getDetailsRequest,
   delArticleRequest,
-  uploadImgRequest,
+  uploadImgLimitRequest,
   _,
 });

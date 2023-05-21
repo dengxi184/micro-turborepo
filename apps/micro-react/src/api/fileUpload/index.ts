@@ -7,15 +7,17 @@ import {
   uploadRecordResponse,
   deleteImgOptions,
   getImgListOptions,
-  uploadImgOptions,
+  uploadOptions,
+  uploadFileResponse,
   uploadImgResponse,
 } from './type';
 
 const url = 'api/upload';
 export const uploadFileRequest = async (options: any) => {
-  return post({
+  const { formData } = options;
+  return post<uploadFileResponse>({
     input: `${url}/upload-file`,
-    init: { ...options },
+    init: formData,
   });
 };
 
@@ -40,7 +42,7 @@ export const deleteFileRequest = async (options: deleteFileOptions) => {
   });
 };
 
-export const uploadImgLimitRequest = async (options: uploadImgOptions) => {
+export const uploadImgLimitRequest = async (options: uploadOptions) => {
   const { formData } = options;
   return limitPost<uploadImgResponse>({
     input: `${url}/upload-img`,
