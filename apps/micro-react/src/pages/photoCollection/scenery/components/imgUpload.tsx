@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { Upload, Collapse, type UploadProps } from '@arco-design/web-react';
+import {
+  Upload,
+  Collapse,
+  type UploadProps,
+  Message,
+} from '@arco-design/web-react';
 
 import {
   deleteImgRequest,
@@ -7,6 +12,7 @@ import {
 } from '../../../../api/fileUpload';
 import { getSupportType } from '../utils/getSupportType';
 import compressPic from '../utils/compressPic';
+import { uploadImgsLimit } from '../../contants';
 
 const CollapseItem = Collapse.Item;
 
@@ -44,6 +50,10 @@ export const ImgUpload = () => {
     }
   };
 
+  const onExceedLimit = () => {
+    Message.error(`请勿要一次性上传超过${uploadImgsLimit}图片！`);
+  };
+
   const cancelUpload = async (xhr) => {
     try {
       const { createAt, fileName } = JSON.parse(xhr.response);
@@ -65,6 +75,8 @@ export const ImgUpload = () => {
       <Upload
         listType="picture-list"
         multiple
+        limit={uploadImgsLimit}
+        onExceedLimit={onExceedLimit}
         fileList={fileList}
         onChange={setFileList}
         customRequest={customRequest}

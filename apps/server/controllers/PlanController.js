@@ -21,6 +21,7 @@ exports.getPlanTemplate = [
 exports.changePlanTemplate = [
   async (req, res) => {
     try {
+      console.log(req.body);
       const { planList, id } = req.body;
       await User.updateOne({ _id: id }, { planTemplate: planList });
       res.send({
@@ -54,9 +55,9 @@ exports.addPlan = [
   async (req, res) => {
     try {
       const { id, date, planList } = req.body;
-      planList.forEach(async (plan) => {
+      for (const plan of planList) {
         await Plan.create({ ...plan });
-      });
+      }
       const list = await Plan.find({ id, date });
       res.send({
         list,

@@ -24,3 +24,5 @@ export const maxSize = 250;
 export const supportType = ['jpg', 'png'];
 
 export const encoderOtp = 0.2;
+
+export const uploadImgsLimit = 20;
